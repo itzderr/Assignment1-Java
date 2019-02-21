@@ -26,7 +26,9 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
 
-        return "";
+        double inchesD = inches;
+        double meters = inchesD * 0.0254;
+        return String.format("%s inches is %s meters", Double.toString(inchesD), Double.toString(meters));
     }
 
     /**
@@ -37,8 +39,15 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
+        int numberD = number;
+        int sumDigits = 0;
 
-        return "";
+        while(number > 0) {
+            sumDigits = sumDigits + number % 10;
+            number = Math.floorDiv(number, 10);
+        }
+
+        return String.format("The sum of all digits in %s is %s",Integer.toString(numberD) ,Integer.toString(sumDigits));
     }
 
     /**
@@ -50,7 +59,12 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+        int hours = Math.floorDiv(mins, 60);
+        int days = Math.floorDiv(hours, 24);
+        int years = Math.floorDiv(days, 365);
+        int lestDays = Math.floorMod(days, 365);
+
+        return String.format("%s minutes is approximately %s years and %s days", Integer.toString(mins), Integer.toString(years), Integer.toString(lestDays));
     }
 
     /**
@@ -63,8 +77,8 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-
-        return "";
+        double bmi = kgs / Math.pow(meters, 2);
+        return String.format("Body Mass Index is %s", String.format("%.3f", bmi));
     }
 
     /**
@@ -89,9 +103,21 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
-    }
+        double secondsM = hours * 60 * 60 + minutes * 60 + seconds;
+        double hoursM = secondsM / 60 /60;
+        double km = meters/1000;
+        String sent = String.format(
+            "Your speed in meters/second is %.4f\n" +
+            "Your speed in km/h is %.4f\n" +
+            "Your speed in miles/h is %.4f",
+            meters/secondsM,
+            km/hoursM,
+            meters * 0.000621371 /hoursM
+        );
 
+        return sent;
+    }
+    
     /**
      * Write a function that reads a number and display the square,
      * cube, and the fourth power.
@@ -105,7 +131,11 @@ public class Assignment1 {
      */
     public static String powers(int number) {
 
-        return "";
+        double square = Math.pow(number, 2);
+        double cube= Math.pow(number, 3);
+        double fourthPower= Math.pow(number, 4);
+
+        return String.format("Square: %s\nCube: %s\nFourth power: %s", String.format("%,.0f", square), String.format("%,.0f", cube), String.format("%,.0f", fourthPower));
     }
 
     /**
@@ -127,7 +157,31 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
+        int sum = a + b;
+        int diff = a - b;
+        int prod = a * b;
+        double ave = (a+b)/2;
+        int dist = Math.abs(a - b);
+        int max = Math.max(a, b);
+        int min = Math.min(a, b);
 
-        return "";
+        String sent = String.format(
+            "Sum of two integers: %s\n" + 
+            "Difference of two integers: %s\n" + 
+            "Product of two integers: %s\n" + 
+            "Average of two integers: %s\n" + 
+            "Distance of two integers: %s\n" + 
+            "Max integer: %s\n" +
+            "Min integer: %s",
+            Integer.toString(sum),
+            Integer.toString(diff),
+            Integer.toString(prod),
+            String.format("%.2f",ave),
+            Integer.toString(dist),
+            Integer.toString(max),
+            Integer.toString(min)
+        );
+
+        return sent;
     }
 }
