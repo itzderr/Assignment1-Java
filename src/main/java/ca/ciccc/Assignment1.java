@@ -1,5 +1,8 @@
 package ca.ciccc;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class Assignment1 {
 
     /**
@@ -24,9 +27,12 @@ public class Assignment1 {
      * @param inches
      * @return "1000.0 inches is 25.4 meters"
      */
-    public static String inchesToMeters(int inches) {
+    public static String inchesToMeters(double inches) {
 
-        return "";
+        double meters = inches * 0.0254;
+        String result = String.format("%.1f inches is %.1f meters", inches, meters);
+
+        return result;
     }
 
     /**
@@ -38,7 +44,17 @@ public class Assignment1 {
      */
     public static String addDigits(int number) {
 
-        return "";
+        int firstDigit = number % 10;
+        int remainingNumber = number / 10;
+        int secondDigit = remainingNumber % 10;
+        remainingNumber = remainingNumber / 10;
+        int thirdDigit = remainingNumber % 10;
+        remainingNumber = remainingNumber / 10;
+        int fourthDigit = remainingNumber % 10;
+        int sum = firstDigit + secondDigit + thirdDigit + fourthDigit;
+
+        String result = String.format("The sum of all digits in %d is %d", number, sum);
+        return result;
     }
 
     /**
@@ -50,7 +66,12 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+        double minutesInYear = 60 * 24 * 365;
+        long years = (long) (mins / minutesInYear);
+        int days = (int) (mins / 60 / 24) % 365;
+
+        String result = String.format("%d minutes is approximately %d years and %d days", mins, years, days);
+        return result;
     }
 
     /**
@@ -64,7 +85,11 @@ public class Assignment1 {
      */
     public static String bmi(int kgs, double meters) {
 
-        return "";
+        double bmi = kgs / (meters * meters);
+
+        String result = String.format("Body Mass Index is %.3f", bmi);
+
+        return result;
     }
 
     /**
@@ -89,7 +114,19 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+
+        float timeSeconds = (hours*3600) + (minutes*60) + seconds;
+        float mps = meters / timeSeconds;
+        float kph = (meters / 1000.0f) / (timeSeconds / 3600.0f);
+        float mph = kph / 1.609f;
+
+        DecimalFormat df = new DecimalFormat("#.####");
+        df.setRoundingMode(RoundingMode.DOWN);
+
+
+
+        String result = String.format("Your speed in meters/second is %s\nYour speed in km/h is %s\nYour speed in miles/h is %s", df.format(mps), df.format(kph), df.format(mph));
+        return result;
     }
 
     /**
@@ -105,7 +142,22 @@ public class Assignment1 {
      */
     public static String powers(int number) {
 
-        return "";
+        /*int square = number * number;
+        int cube = number * number * number;
+        int fourthPower = number * number * number * number;*/
+
+        double square = Math.pow(number, 2);
+        double cube = Math.pow(number, 3);
+        double fourthPower = Math.pow(number,4);
+
+
+
+
+
+        String result = String.format("Square: %.0f\n" +
+                                    "Cube: %.0f\n" +
+                                    "Fourth power: %.0f", square, cube, fourthPower);
+        return result;
     }
 
     /**
@@ -128,6 +180,23 @@ public class Assignment1 {
      */
     public static String arithmetic(int a, int b) {
 
-        return "";
+        int firstInteger = a;
+        int secondInteger = b;
+        int sum = firstInteger + secondInteger;
+        int dif = firstInteger - secondInteger;
+        int mult = firstInteger * secondInteger;
+        float med = ( (firstInteger + secondInteger) / 2);
+        int dist = firstInteger - secondInteger;
+        int max = Math.max(firstInteger, secondInteger);
+        int min = Math.min(firstInteger, secondInteger);
+
+        String result = String.format("Sum of two integers: %d" +
+                        "\nDifference of two integers: %d" +
+                        "\nProduct of two integers: %d" +
+                        "\nAverage of two integers: %.2f" +
+                        "\nDistance of two integers: %d" +
+                        "\nMax integer: %d" +
+                        "\nMin integer: %d", sum, dif, mult, med, dist, max, min);
+        return result;
     }
 }
