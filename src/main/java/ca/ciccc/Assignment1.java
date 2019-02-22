@@ -64,14 +64,15 @@ public class Assignment1 {
      * Write a function that takes weight as Kgs(Kilograms) and height as meters and compute
      * body mass index (BMI)
      * Sample Input: kgs = 70, meters = 1.75
-     *
+     * BMI = weight (kg) ÷ height2 (m2)
      * @param kgs
      * @param meters
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-
-        return "";
+        double bmi = kgs / (meters * meters);
+        String result = String.format("Body Mass Index is %.3f", bmi);
+        return result;
     }
 
     /**
@@ -95,8 +96,11 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
-
-        return "";
+        double mps = (double) meters / (hours*360 + minutes*60 + seconds);
+        double kmh = mps * 3.60;
+        double mph = kmh * 0.621371192;
+        String result = String.format("Your speed in meters/second is 0.1169\nYour speed in km/h is 0.4208\nYour speed in miles/h is 0.2615", mps,kmh,mph);
+        return result;
     }
 
     /**
@@ -111,8 +115,11 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
-
-        return "";
+        int sq = number * number;
+        int cb = sq * number;
+        int fp = cb * number;
+        String result = String.format("Square: %d\nCube: %d\nFourth power: %d", sq,cb,fp);
+        return result;
     }
 
     /**
@@ -134,7 +141,27 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
-
-        return "";
+        int maxv;
+        int minv;
+        int sum = a + b;
+        int dif = a - b;
+        int prod = a * b;
+        float avg = (float) sum / 2;
+        int dist = Math.abs(dif);
+        if(a>b){
+            maxv = a;
+            minv = b;
+        }
+        else{
+            maxv = b;
+            minv = a;
+        }
+        String result = String.format("Sum of two integers: %d\n" +
+        "Difference of two integers: %d\n" +
+        "Product of two integers: %d\n" +
+        "Average of two integers: %.2f\n" +
+        "Distance of two integers: %d\n" +
+        "Max integer: %d\nMin integer: %d",sum,dif,prod,avg,dist,maxv,minv);
+        return result;
     }
 }
