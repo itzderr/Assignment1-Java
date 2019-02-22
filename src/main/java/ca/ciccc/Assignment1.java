@@ -1,5 +1,9 @@
 package ca.ciccc;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class Assignment1 {
 
     /**
@@ -24,9 +28,10 @@ public class Assignment1 {
      * @param inches
      * @return "1000.0 inches is 25.4 meters"
      */
-    public static String inchesToMeters(int inches) {
-
-        return "";
+    public static String inchesToMeters(double inches) {
+        double meters = (inches * 0.0254);
+        String result = (inches + " inches is " + meters + " meters");
+        return result;
     }
 
     /**
@@ -37,8 +42,22 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
+        int answer = 0;
+        int rest = number;
 
-        return "";
+        while(rest > 10){
+        int n = rest % 10;
+        answer = answer + n;
+        rest = rest / 10;
+
+        if(rest <= 10){
+            answer = answer + rest;
+            break;
+            }
+        }
+
+
+        return "The sum of all digits in " + number + " is " + answer;
     }
 
     /**
@@ -49,8 +68,16 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
+    int hour = mins / 60;
+    int days = hour / 24;
+    int year = days / 365;
 
-        return "";
+        if(year >= 1){
+            year = days / 365;
+            days = days % 365;
+        }
+
+        return mins + " minutes is approximately " + year + " years and " + days + " days";
     }
 
     /**
@@ -63,8 +90,15 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
+        double BMI = kgs / (meters * meters);
 
-        return "";
+        DecimalFormat df = new DecimalFormat();
+        df.setMinimumFractionDigits(3);
+        df.setRoundingMode(RoundingMode.DOWN);
+
+        String bmi = df.format(BMI);
+
+        return "Body Mass Index is " + bmi;
     }
 
     /**
@@ -88,8 +122,20 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
+        double s = seconds + (minutes * 60) + (hours * 3600);
+        double ms = meters / s;
+        double kmh = 3600 * ms / 1000 ;
+        double mih = 3600 * ms / 1609 ;
 
-        return "";
+        DecimalFormat df = new DecimalFormat();
+        df.setMinimumFractionDigits(4);
+        df.setRoundingMode(RoundingMode.DOWN);
+
+        String msf = df.format(ms);
+        String kmhf = df.format(kmh);
+        String mihf = df.format(mih);
+
+        return "Your speed in meters/second is " + msf + "\n" + "Your speed in km/h is "+ kmhf +"\n" + "Your speed in miles/h is " + mihf;
     }
 
     /**
@@ -104,8 +150,11 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
+        int sq = number * number;
+        int cu = number * number * number;
+        int fourth = number * number * number * number;
 
-        return "";
+        return "Square: "+ sq + "\n" + "Cube: " + cu + "\n" + "Fourth power: " + fourth;
     }
 
     /**
@@ -127,7 +176,43 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
+        int sum = a + b;
+        int dif = a - b;
+        int pro = a * b;
+        double ave = sum / 2.00;
 
-        return "";
+        DecimalFormat df = new DecimalFormat();
+        df.setMinimumFractionDigits(2);
+        df.setRoundingMode(RoundingMode.DOWN);
+
+        String aves = df.format(ave);
+
+
+
+        if(a > b){
+            int dis = a - b;
+            int max = a;
+            int min = b;
+
+            return "Sum of two integers: " + sum + "\n" +
+                    "Difference of two integers: " + dif + "\n" +
+                    "Product of two integers: " + pro + "\n" +
+                    "Average of two integers: " + aves+  "\n" +
+                    "Distance of two integers: " + dis + "\n" +
+                    "Max integer: " + max + "\n" +
+                    "Min integer: " + min ;
+        }else{
+            int dis = b - a;
+            int max = b;
+            int min = a;
+
+            return "Sum of two integers: " + sum + "\n" +
+                    "Difference of two integers: " + dif + "\n" +
+                    "Product of two integers: " + pro + "\n" +
+                    "Average of two integers: " + aves+  "\n" +
+                    "Distance of two integers: " + dis + "\n" +
+                    "Max integer: " + max + "\n" +
+                    "Min integer: " + min ;
+        }
     }
 }
