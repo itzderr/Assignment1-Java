@@ -1,5 +1,9 @@
 package ca.ciccc;
 
+import java.math.RoundingMode;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
 public class Assignment1 {
 
     /**
@@ -104,11 +108,14 @@ public class Assignment1 {
         double metersAsDouble = (double) meters;
         double miles = metersAsDouble / 1609.34;
         double meterToKm = metersAsDouble / 1000;
-        double mps = metersAsDouble / sumAsSecond;
-        double mlph = miles / sumAsHours;
-        double kph = meterToKm / sumAsHours;
+        double mps = Math.floor((metersAsDouble / sumAsSecond) * 10000)/10000;
+        double mlph = Math.floor((miles / sumAsHours) * 10000)/10000;
+        double kph = Math.floor((meterToKm / sumAsHours) * 10000)/10000;
 
-        String result = String.format("Your speed in meters/second is %.4f\nYour speed in km/h is %.4f\nYour speed in miles/h is %.4f", mps, kph, mlph);
+//        String x = new DecimalFormat("#.####").format(kph);
+//        memo:other way to roud off number
+
+        String result = String.format("Your speed in meters/second is %.4f\nYour speed in km/h is %s\nYour speed in miles/h is %.4f", mps, kph, mlph);
         return result;
     }
 
@@ -161,6 +168,15 @@ public class Assignment1 {
             }
         int prod = a * b;
         int ave = (a + b) / 2;
+        int dis;
+            if(a < 0) {
+                dis = -1 * a + b;
+            } else if(b < 0) {
+                dis = -1*b + a;
+            } else {
+                dis = a + b ;
+            }
+
         int max;
             if(a > b) {
                 max = a;
@@ -178,7 +194,7 @@ public class Assignment1 {
                 min = b;
             }
 
-        String result = String.format("Sum of two integers: %d\nDifference of two integers: %d\nProduct of two integers: %d\nAverage of two integers: %.2f\nDistance of two integers: %d\nMax integer: %d\nMin integer: %d", sum, dif, prod, (double)ave, dif, max, min);
+        String result = String.format("Sum of two integers: %d\nDifference of two integers: %d\nProduct of two integers: %d\nAverage of two integers: %.2f\nDistance of two integers: %d\nMax integer: %d\nMin integer: %d", sum, dif, prod, (double)ave, dis, max, min);
 
             return result;
     }
