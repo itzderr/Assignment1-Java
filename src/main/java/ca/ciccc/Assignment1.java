@@ -1,5 +1,7 @@
 package ca.ciccc;
 
+import java.math.BigDecimal;
+
 public class Assignment1 {
 
     /**
@@ -104,14 +106,22 @@ public class Assignment1 {
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
         double secondsM = hours * 60 * 60 + minutes * 60 + seconds;
+        BigDecimal secondsBD = new BigDecimal(secondsM);
+        BigDecimal sixty = new BigDecimal(60);
+        BigDecimal thauthand = new BigDecimal(1000);
+        BigDecimal minsBD = secondsBD.divide(sixty, 4, BigDecimal.ROUND_HALF_UP);
+        BigDecimal hoursBD = minsBD.divide(sixty, 4, BigDecimal.ROUND_HALF_UP);
+        BigDecimal metersBD = new BigDecimal(meters);
+        BigDecimal km = metersBD.divide(thauthand);
+        BigDecimal km_h = km.divide(hoursBD, 4, BigDecimal.ROUND_FLOOR);
         double hoursM = secondsM / 60 /60;
-        double km = meters/1000;
+
         String sent = String.format(
             "Your speed in meters/second is %.4f\n" +
             "Your speed in km/h is %.4f\n" +
             "Your speed in miles/h is %.4f",
             meters/secondsM,
-            km/hoursM,
+            km_h,
             meters * 0.000621371 /hoursM
         );
 
