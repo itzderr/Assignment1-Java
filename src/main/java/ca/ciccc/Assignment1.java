@@ -1,5 +1,9 @@
 package ca.ciccc;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class Assignment1 {
 
     /**
@@ -24,9 +28,12 @@ public class Assignment1 {
      * @param inches
      * @return "1000.0 inches is 25.4 meters"
      */
-    public static String inchesToMeters(int inches) {
+    public static String inchesToMeters(double inches) {
 
-        return "";
+        double meters = inches * 0.0254;
+        String result = String.format("%.1f inches is %.1f meters", inches, meters);
+
+        return result;
     }
 
     /**
@@ -38,7 +45,15 @@ public class Assignment1 {
      */
     public static String addDigits(int number) {
 
-        return "";
+        int i = number;
+        int sum = 0;
+        while (i > 0) {
+            sum += i % 10;
+            i = i / 10;
+        }
+        String result = String.format("The sum of all digits in %d is %d", number, sum);
+
+        return result;
     }
 
     /**
@@ -50,7 +65,11 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+        int years = mins / (60 * 24 * 365);                 // mins -> 60 mins, 24 hours, 365 days
+        int days = (mins % (60 * 24 * 365) / (60 * 24));    // (mins - years) -> 60 mins, 24 hours
+
+        String result = String.format("%d minutes is approximately %d years and %d days", mins, years, days);
+        return result;
     }
 
     /**
@@ -64,7 +83,10 @@ public class Assignment1 {
      */
     public static String bmi(int kgs, double meters) {
 
-        return "";
+        double bmi = kgs / (meters * meters);
+
+        String result = String.format("Body Mass Index is %.3f", bmi);
+        return result;
     }
 
     /**
@@ -89,7 +111,21 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+        double timeInHour = hours + ((double)minutes / 60) + ((double)seconds / 3600);
+        BigDecimal bdHour = new BigDecimal(timeInHour);
+        double timeInSecond = (hours * 3600) + (minutes * 60) + seconds;
+        double miles = meters * 0.000621371;
+        BigDecimal bdMiles = new BigDecimal(miles);
+        double km = (double)meters / 1000;
+        BigDecimal bdKm = new BigDecimal(km);
+
+
+        double mps = meters / timeInSecond;
+        BigDecimal bdKmph = bdKm.divide(bdHour, 4, BigDecimal.ROUND_DOWN);
+        BigDecimal bdMiph = bdMiles.divide(bdHour, 4, BigDecimal.ROUND_DOWN);
+
+        String result = String.format("Your speed in meters/second is %.4f\nYour speed in km/h is %.4f\nYour speed in miles/h is %.4f",mps, bdKmph, bdMiph);
+        return result;
     }
 
     /**
@@ -103,9 +139,15 @@ public class Assignment1 {
      *          Cube: 125
      *          Fourth power: 625"
      */
-    public static String powers(int number) {
 
-        return "";
+    public static String powers(int number) {
+        int square = number * number;
+        int cube = number * number * number;
+        int fourthPower = number * number * number * number;
+
+        String result = String.format("Square: %d\nCube: %d\nFourth power: %d", square, cube, fourthPower);
+        return result;
+
     }
 
     /**
@@ -128,6 +170,21 @@ public class Assignment1 {
      */
     public static String arithmetic(int a, int b) {
 
-        return "";
+        int sum = a + b;
+        int dif = a - b;
+        int pro = a * b;
+        double ave = sum / 2;
+        int dis = Math.abs(dif);
+        int max = Math.max(a, b);
+        int min = Math.min(a, b);
+
+        String result = String.format("Sum of two integers: %d\n" +
+                                    "Difference of two integers: %d\n" +
+                                    "Product of two integers: %d\n" +
+                                    "Average of two integers: %.2f\n" +
+                                    "Distance of two integers: %d\n" +
+                                    "Max integer: %d\n" +
+                                    "Min integer: %d", sum, dif, pro, ave, dis, max, min);
+        return result;
     }
 }
