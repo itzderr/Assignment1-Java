@@ -36,7 +36,7 @@ public class Grader {
     @Test
     public void testSpeed() {
         String result = Assignment1.speed(2500, 5, 56, 23);
-        Assert.assertEquals("Your speed in meters/second is 0.1169\nYour speed in km/h is 0.4208\nYour speed in miles/h is 0.2615", result);
+        Assert.assertEquals("Your speed in meters/second is 0.1169\nYour speed in km/h is 0.4209\nYour speed in miles/h is 0.2615", result);
     }
 
     @Test
