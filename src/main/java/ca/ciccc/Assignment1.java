@@ -25,8 +25,9 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
-
-        return "";
+        double meters = (double)inches * 0.0254;
+        String result = String.format("%.1f inches is %.1f meters", (double)inches, meters);
+        return result;
     }
 
     /**
@@ -37,8 +38,12 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
-
-        return "";
+        int total = 0;
+        for(int i = number; i != 0; i = i / 10){
+            total += (i % 10);
+        }
+        String result = String.format("The sum of all digits in %d is %d", number, total);
+        return result;
     }
 
     /**
@@ -49,8 +54,10 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
-
-        return "";
+        int years = mins / 525600;
+        int days = (mins % 525600) / 1440;
+        String result = String.format("%d minutes is approximately %d years and %d days", mins, years,days);
+        return result;
     }
 
     /**
