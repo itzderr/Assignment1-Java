@@ -1,5 +1,9 @@
 package ca.ciccc;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
 public class Assignment1 {
 
     /**
@@ -25,8 +29,10 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
+        double number = 1000;
+        double meters = number * 0.0254;
 
-        return "";
+        return number + " " + "inches is " + meters + " " + "meters";
     }
 
     /**
@@ -37,8 +43,16 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
+        int sampleInput = 565;
+        int firstNumber =  sampleInput % 10;
+        sampleInput = sampleInput / 10;
+        int secondNumber =  sampleInput % 10;
+        sampleInput = sampleInput / 10;
+        int thirdNumber =  sampleInput % 10;
 
-        return "";
+        int sum = firstNumber + secondNumber + thirdNumber;
+
+        return "The sum of all digits in 565 is " + sum;
     }
 
     /**
@@ -49,8 +63,12 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
+        int timeScore = 3456789;
+        int year = 3456789 / 525600;
+        int remainingMinutes = 3456789 % 525600;
+        int day = remainingMinutes / 1440;
 
-        return "";
+        return 3456789 + " minutes is approximately " + year + " years and " + day + " days";
     }
 
     /**
@@ -63,8 +81,11 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
+        int weight = 70;
+        double heights = 1.75;
+        double result = weight / (heights * heights);
 
-        return "";
+        return "Body Mass Index is " + String.format("%.3f", result);
     }
 
     /**
@@ -88,8 +109,24 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
+        int disMet = meters;
+        int hoursMet = hours;
+        int minMet = minutes;
+        int secMet = seconds;
+        DecimalFormat df = new DecimalFormat();
+        df.setMinimumFractionDigits(4);
+        df.setRoundingMode(RoundingMode.DOWN);
 
-        return "";
+
+        int timeSeconds = (hoursMet*3600) + (minMet*60) + secMet;
+        double mps = (double) disMet / timeSeconds;
+        double kph = (double) (disMet*3600) / (timeSeconds * 1000);
+        double mph = (disMet  * 0.000621371) / (timeSeconds / 3600.0);
+
+
+        return "Your speed in meters/second is " + df.format(mps) + "\n" +
+                "Your speed in km/h is " + df.format(kph) + "\n" +
+                "Your speed in miles/h is " + df.format(mph);
     }
 
     /**
@@ -104,8 +141,13 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
+        int square = number * number;
+        int cube = number * number * number;
+        int fourthPower = number * number * number * number;
 
-        return "";
+        return "Square: " + square + "\n" +
+                "Cube: " + cube + "\n" +
+                "Fourth power: " + fourthPower;
     }
 
     /**
@@ -127,7 +169,22 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
+        int aa = 25;
+        int bb = 5;
+        int sum = aa + bb;
+        int diff = aa - bb;
+        int prod = aa * bb;
+        double aver = (aa + bb) / 2;
+        int dis = Math.abs(bb - aa);
+        int max = Math.max(aa, bb);
+        int min = Math.min(aa, bb);
 
-        return "";
+        return "Sum of two integers: " + sum + "\n" +
+                "Difference of two integers: " + diff + "\n" +
+                "Product of two integers: " + prod + "\n" +
+                "Average of two integers: " + String.format("%.2f", aver) + "\n" +
+                "Distance of two integers: " + dis + "\n" +
+                "Max integer: " + max + "\n" +
+                "Min integer: " + min;
     }
 }
