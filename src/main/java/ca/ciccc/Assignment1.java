@@ -108,14 +108,16 @@ public class Assignment1 {
         double metersAsDouble = (double) meters;
         double miles = metersAsDouble / 1609.34;
         double meterToKm = metersAsDouble / 1000;
-        double mps = Math.floor((metersAsDouble / sumAsSecond) * 10000)/10000;
-        double mlph = Math.floor((miles / sumAsHours) * 10000)/10000;
-        double kph = Math.floor((meterToKm / sumAsHours) * 10000)/10000;
+        double mps = metersAsDouble / sumAsSecond;
+        double mlph = miles / sumAsHours;
+        double kph = meterToKm / sumAsHours;
 
-//        String x = new DecimalFormat("#.####").format(kph);
-//        memo:other way to roud off number
+        DecimalFormat df = new DecimalFormat();
+        df.setMinimumFractionDigits(4);
+        df.setRoundingMode(RoundingMode.DOWN);
 
-        String result = String.format("Your speed in meters/second is %.4f\nYour speed in km/h is %s\nYour speed in miles/h is %.4f", mps, kph, mlph);
+
+        String result = String.format("Your speed in meters/second is %.4f\nYour speed in km/h is %s\nYour speed in miles/h is %.4f", df.format(mps), df.format(kph), df.format(mlph));
         return result;
     }
 
@@ -169,12 +171,10 @@ public class Assignment1 {
         int prod = a * b;
         int ave = (a + b) / 2;
         int dis;
-            if(a < 0) {
-                dis = -1 * a + b;
-            } else if(b < 0) {
-                dis = -1*b + a;
+            if(a > b || a == b){
+                dis = a - b;
             } else {
-                dis = a + b ;
+                dis = b - a;
             }
 
         int max;
