@@ -117,7 +117,7 @@ public class Assignment1 {
         df.setRoundingMode(RoundingMode.DOWN);
 
 
-        String result = String.format("Your speed in meters/second is %.4f\nYour speed in km/h is %s\nYour speed in miles/h is %.4f", df.format(mps), df.format(kph), df.format(mlph));
+        String result = String.format("Your speed in meters/second is %s\nYour speed in km/h is %s\nYour speed in miles/h is %s", df.format(mps), df.format(kph), df.format(mlph));
         return result;
     }
 
