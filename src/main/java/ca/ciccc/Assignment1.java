@@ -161,41 +161,41 @@ public class Assignment1 {
     public static String arithmetic(int a, int b) {
         int sum = a + b;
         int dif;
-            if(a > b) {
-                dif = a - b;
-            } else if( a == b) {
-                dif = 0;
-            } else {
-                dif = b - a;
-            }
+        if(a > b) {
+            dif = a - b;
+        } else if( a == b) {
+            dif = 0;
+        } else {
+            dif = b - a;
+        }
         int prod = a * b;
         int ave = (a + b) / 2;
         int dis;
-            if(a > b || a == b){
-                dis = a - b;
-            } else {
-                dis = b - a;
-            }
+        if(a > b || a == b){
+            dis = a - b;
+        } else {
+            dis = b - a;
+        }
 
         int max;
-            if(a > b) {
-                max = a;
-            } else if( a == b) {
-                max = a;
-            } else {
-                max = b;
-            }
+        if(a > b) {
+            max = a;
+        } else if( a == b) {
+            max = a;
+        } else {
+            max = b;
+        }
         int min;
-            if(a < b) {
-                min = a;
-            } else if( a == b) {
-                min = a;
-            } else {
-                min = b;
-            }
+        if(a < b) {
+            min = a;
+        } else if( a == b) {
+            min = a;
+        } else {
+            min = b;
+        }
 
         String result = String.format("Sum of two integers: %d\nDifference of two integers: %d\nProduct of two integers: %d\nAverage of two integers: %.2f\nDistance of two integers: %d\nMax integer: %d\nMin integer: %d", sum, dif, prod, (double)ave, dis, max, min);
 
-            return result;
+        return result;
     }
 }
