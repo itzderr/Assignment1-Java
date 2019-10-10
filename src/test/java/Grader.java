@@ -4,9 +4,10 @@ import org.junit.Test;
 
 public class Grader {
     @Test
-    public void testFahrenheitToCelsius() {
+    public void testFahrenheitToCelsiusPositive() {
         String result = Assignment1.fahrenheitToCelsius(212);
-        Assert.assertEquals("212.0 degree Fahrenheit is equal to 100.0 in Celsius", result);
+        String expect = "212.0 degree Fahrenheit is equal to 100.0 in Celsius";
+        Assert.assertEquals(expect, result);
     }
 
     @Test
