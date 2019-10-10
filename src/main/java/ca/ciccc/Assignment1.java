@@ -1,5 +1,8 @@
 package ca.ciccc;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class Assignment1 {
 
     /**
@@ -96,10 +99,16 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
+        DecimalFormat df = new DecimalFormat("0.0000");
+        df.setRoundingMode(RoundingMode.FLOOR);
+
         double mps = (double) meters / ((hours * 3600) + (minutes * 60) + seconds);
-        double kmph = ((double) meters / 1000) / (hours + (minutes / 60) + (seconds / 3600));
-        double mph = ((double) meters / 1609) / (hours + minutes / 60 + seconds / 3600);
-        String result = String.format("Your speed in meters/second is %.4f\nYour speed in km/h is %.4f\nYour speed in miles/h is %.4f", mps, kmph, mph);
+        double kmph = (double) meters / (hours + (double) minutes / 60 + (double) seconds / 3600) / 1000;
+        double mph = ((double) meters / 1609) / (hours + (double) minutes / 60 + (double) seconds / 3600);
+
+        String result = String.format("Your speed in meters/second is " + df.format(mps)
+                + "\nYour speed in km/h is " + df.format(kmph)
+                + "\nYour speed in miles/h is " + df.format(mph));
         return result;
     }
 
