@@ -1,6 +1,13 @@
 package ca.ciccc;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class Assignment1 {
+
+    public static void main(String[] args) {
+        System.out.println(Assignment1.arithmetic(5, 25));
+    }
 
     /**
      * Write a function to convert temperature from Fahrenheit to Celsius degree
@@ -26,7 +33,10 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
 
-        return "";
+        double r = inches * 0.0254;
+        DecimalFormat df = new DecimalFormat("########.0");
+
+        return df.format(inches) + " inches is " + r + " meters";
     }
 
     /**
@@ -38,7 +48,15 @@ public class Assignment1 {
      */
     public static String addDigits(int number) {
 
-        return "";
+        String tmp = Integer.toString(number);
+
+        int finalNumber = 0;
+        for (int i = 0; i < tmp.length(); i++)
+        {
+            finalNumber = finalNumber + Character.getNumericValue(tmp.charAt(i));
+        }
+
+        return "The sum of all digits in " + number + " is " + finalNumber;
     }
 
     /**
@@ -50,7 +68,10 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+        int year = mins / 525600;
+        int remainingMinutes = mins % 525600;
+        int day = remainingMinutes / 1440;
+        return mins + " minutes is approximately " + year + " years and " + day + " days";
     }
 
     /**
@@ -63,8 +84,9 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-
-        return "";
+        double BMI = kgs / (meters * meters);
+        DecimalFormat df = new DecimalFormat("########.###");
+        return "Body Mass Index is " + df.format(BMI);
     }
 
     /**
@@ -89,7 +111,17 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+        int secs = (hours * 3600) + (minutes * 60) + seconds;
+        DecimalFormat df = new DecimalFormat("########.####");
+        df.setRoundingMode(RoundingMode.DOWN);
+
+        double ms = (double)meters / (double)secs;
+        double kh = (double)(meters * 3600) / (double)(secs * 1000);
+        double mh = kh / 1.609f;
+
+        return "Your speed in meters/second is " + df.format(ms) + "\n" +
+                "Your speed in km/h is " + df.format(kh) + "\n" +
+                "Your speed in miles/h is " + df.format(mh);
     }
 
     /**
@@ -104,8 +136,14 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
+        int sq = (int) Math.pow(number, 2);
+        int cb = (int) Math.pow(number, 3);
+        int ft = (int) Math.pow(number, 4);
 
-        return "";
+
+        return "Square: "+sq+"\n" +
+                "Cube: "+cb+"\n" +
+                "Fourth power: " + ft;
     }
 
     /**
@@ -127,7 +165,14 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
+        int dif = a - b; dif *= (dif < 0)?-1:1;
 
-        return "";
+        return "Sum of two integers: "+(a + b)+"\n" +
+                "Difference of two integers: "+dif+"\n" +
+                "Product of two integers: "+(a * b)+"\n" +
+                "Average of two integers: "+(a + b) / 2+".00\n" +
+                "Distance of two integers: "+dif+"\n" +
+                "Max integer: "+((a > b)?a:b)+"\n" +
+                "Min integer: "+((a < b)?a:b);
     }
 }
