@@ -1,4 +1,5 @@
 package ca.ciccc;
+import java.text.DecimalFormat;
 
 public class Assignment1 {
 
@@ -26,7 +27,13 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
 
-        return "";
+        double inches2 = inches;
+        double meters = inches * 0.0254;
+
+        String result = String.format(inches2 + " inches is " + meters +" meters");
+
+        return result;
+
     }
 
     /**
@@ -38,7 +45,19 @@ public class Assignment1 {
      */
     public static String addDigits(int number) {
 
-        return "";
+        String str = String.valueOf(number);
+        int sum = 0;
+
+        char[] array = str.toCharArray();
+
+        for (int i = 0; i < str.length() ; i++) {
+            sum = sum + (array[i] -'0');  // change from char position in ascii table to decimal
+        }
+
+        String result = String.format("The sum of all digits in " + number + " is " + sum);
+
+        return result;
+
     }
 
     /**
@@ -48,9 +67,26 @@ public class Assignment1 {
      * @param mins
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
+
+    // 1 hr = 60 min
+    // 1 dia = 1440 min
+    // 1 año = 365 dias (525,600 min)
     public static String minsToYearsDays(int mins) {
 
-        return "";
+        int years = 0;
+        int days = 0;
+
+        days = mins / 1440;
+
+        while (days > 365) {
+                years++;
+                days = days - 365;
+        }
+
+        String result = String.format(mins + " minutes is approximately " + years + " years and " + days + " days");
+
+        return result;
+
     }
 
     /**
@@ -64,7 +100,13 @@ public class Assignment1 {
      */
     public static String bmi(int kgs, double meters) {
 
-        return "";
+        double BMI =  kgs / (meters*meters);
+
+        DecimalFormat format = new DecimalFormat("0.000");
+        String result = String.format("Body Mass Index is " + format.format(BMI));
+
+        return result;
+
     }
 
     /**
@@ -89,7 +131,25 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+        double tot_seg = (hours*3600) + (minutes*60) + seconds;
+        double tot_hours = tot_seg/3600;
+        double miles = meters*0.0006213671;
+
+        double ms = meters / tot_seg;
+        double mh = miles / tot_hours;
+        double kh= mh * 1.609;
+
+
+
+        DecimalFormat format = new DecimalFormat("0.0000");
+
+
+        String result = String.format(
+                "Your speed in meters/second is " + format.format(ms) +
+                        "\nYour speed in km/h is " + format.format(kh) +
+                        "\nYour speed in miles/h is " + format.format(mh));
+
+        return result;
     }
 
     /**
@@ -105,7 +165,17 @@ public class Assignment1 {
      */
     public static String powers(int number) {
 
-        return "";
+        int square = number*number;
+        int cube = number*number*number;
+        int fourth = number*number*number*number;
+
+
+        String result = String.format(
+                "Square: " + square +
+                "\nCube: " + cube +
+                "\nFourth power: " + fourth);
+
+        return result;
     }
 
     /**
@@ -128,6 +198,38 @@ public class Assignment1 {
      */
     public static String arithmetic(int a, int b) {
 
-        return "";
+        int min;
+        int max;
+
+
+        if (a<b) {
+            min = a;
+            max = b;
+        }
+        else{
+            min = b;
+            max = a;
+        }
+
+
+        int sum = a + b;
+        int difference = max - min;
+        int product = a * b;
+        double average = (a+b)/2;
+        int distance = max - min;
+
+        DecimalFormat format = new DecimalFormat("#.00");
+
+
+        String result = String.format("Sum of two integers: " + sum +
+                "\nDifference of two integers: " + difference +
+                "\nProduct of two integers: " + product +
+                "\nAverage of two integers: " + format.format(average) +
+                "\nDistance of two integers: " + distance +
+                "\nMax integer: " + max +
+                "\nMin integer: " + min);
+
+        return result;
+
     }
 }
