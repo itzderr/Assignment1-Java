@@ -1,6 +1,16 @@
 package ca.ciccc;
 
+
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class Assignment1 {
+
+
+    public static void main(String[] args){
+        System.out.println(arithmetic(25, 5));
+    }
+
 
     /**
      * Write a function to convert temperature from Fahrenheit to Celsius degree
@@ -25,8 +35,7 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
-
-        return "";
+        return (inches / 1.0) + " inches is " + (inches * 0.0254) + " meters";
     }
 
     /**
@@ -38,7 +47,13 @@ public class Assignment1 {
      */
     public static String addDigits(int number) {
 
-        return "";
+        int d3 = number / 100;
+        int mod3 = number % 100;
+        int d2 = mod3 / 10;
+        int mod2 = mod3 % 10;
+        int d1 = mod2 / 1;
+
+        return "The sum of all digits in " + number + " is " + (d3 + d2 + d1);
     }
 
     /**
@@ -50,7 +65,8 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+        return mins + " minutes is approximately " + (mins / (60 * 24 * 365)) + " years and "
+                + (mins % (60 * 24 * 365)) / (60 * 24) + " days";
     }
 
     /**
@@ -64,7 +80,10 @@ public class Assignment1 {
      */
     public static String bmi(int kgs, double meters) {
 
-        return "";
+        DecimalFormat df = new DecimalFormat("#.###");
+        df.setRoundingMode(RoundingMode.DOWN);
+
+        return "Body Mass Index is " + df.format((kgs / (meters * meters)));
     }
 
     /**
@@ -89,7 +108,12 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+        DecimalFormat df = new DecimalFormat("#.####");
+        df.setRoundingMode(RoundingMode.DOWN);
+
+        return "Your speed in meters/second is " + df.format(meters/((hours * 3600 + minutes * 60 + seconds)*1.0)) +
+                "\nYour speed in km/h is " + df.format((meters / ((hours * 3600 + minutes * 60 + seconds)*1.0)) * 3600 / 1000) +
+                "\nYour speed in miles/h is " + df.format((meters / ((hours * 3600 + minutes * 60 + seconds)*1.0)) * 3600 / 1000 / 1.609);
     }
 
     /**
@@ -105,7 +129,9 @@ public class Assignment1 {
      */
     public static String powers(int number) {
 
-        return "";
+        return "Square: " + number * number + "\n" +
+                "Cube: " + number * number * number + "\n" +
+                "Fourth power: " + number * number * number * number;
     }
 
     /**
@@ -128,6 +154,14 @@ public class Assignment1 {
      */
     public static String arithmetic(int a, int b) {
 
-        return "";
+        DecimalFormat df = new DecimalFormat("#.00");
+
+        return "Sum of two integers: " + (a + b) + "\n" +
+                "Difference of two integers: " + (a-b) + "\n" +
+                "Product of two integers: " + (a * b) + "\n" +
+                "Average of two integers: " + df.format((a + b)/2) + "\n" +
+                "Distance of two integers: " + Math.abs((a-b)) + "\n" +
+                "Max integer: " + Math.max(a, b) + "\n" +
+                "Min integer: " + Math.min(a, b);
     }
 }
