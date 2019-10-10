@@ -1,5 +1,7 @@
 package ca.ciccc;
 
+
+
 public class Assignment1 {
 
     /**
@@ -25,8 +27,9 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
-
-        return "";
+        double meters = inches *  0.0254;
+        String result = String.format("%.1f inches is %.1f meters", (double)inches, meters);
+        return result;
     }
 
     /**
@@ -37,8 +40,13 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
-
-        return "";
+        int sum;
+        int hundreds = number / 100;
+        int tens = (number / 10) % 10;
+        int ones = number % 10;
+        sum = hundreds + tens + ones;
+        String result = String.format("The sum of all digits in %d is %d", number, sum);
+        return result;
     }
 
     /**
@@ -49,8 +57,13 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
+        int tempDays, years, days;
+        tempDays = ((mins / 60) / 24);
+        years = tempDays / 365;
+        days = tempDays - (365 * years);
 
-        return "";
+        String result = String.format("%d minutes is approximately %d years and %d days", mins, years, days);
+        return result;
     }
 
     /**
@@ -64,7 +77,9 @@ public class Assignment1 {
      */
     public static String bmi(int kgs, double meters) {
 
-        return "";
+        double bmi = kgs / (meters*meters);
+        String result = String.format("Body Mass Index is %.3f", bmi);
+        return result;
     }
 
     /**
@@ -89,7 +104,15 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+        double speedMs, speedKh, speedMh, miles, kilometers;
+
+        miles = (double) meters / 1609;
+        kilometers = (double) meters / 1000;
+        speedMs = (double) meters / ((hours * 3600) + (minutes * 60) + seconds);
+        speedKh = kilometers / (hours + ((double) minutes / 60) + ((double) seconds / 3600));
+        speedMh = miles / (hours + ((double) minutes / 60) + ((double) seconds / 3600));
+        String result = String.format("Your speed in meters/second is %.4f\nYour speed in km/h is %.4f\nYour speed in miles/h is %.4f", speedMs , speedKh - 0.00005, speedMh - 0.00005);
+        return result;
     }
 
     /**
@@ -104,8 +127,12 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
-
-        return "";
+        int Square, Cube, Fourth;
+        Square = (int) Math.pow(number, 2);
+        Cube = (int) Math.pow(number, 3);
+        Fourth = (int) Math.pow(number, 4);
+        String result = String.format("Square: %d\nCube: %d\nFourth power: %d", Square, Cube, Fourth);
+        return result;
     }
 
     /**
@@ -127,7 +154,22 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
-
-        return "";
+        int sum, difference, product, distance, maximum, minimum;
+        double average;
+        sum = a + b;
+        minimum = Math.min(a, b);
+        maximum = Math.max(a, b);
+        difference = maximum - minimum;
+        distance = maximum - minimum;
+        product = a * b;
+        average = (a + b) / 2;
+        String result = String.format("Sum of two integers: %d\n" +
+                "Difference of two integers: %d\n" +
+                "Product of two integers: %d\n" +
+                "Average of two integers: %.2f\n" +
+                "Distance of two integers: %d\n" +
+                "Max integer: %d\nMin integer: %d",
+                sum, difference, product, average, distance, maximum, minimum);
+        return result;
     }
 }
