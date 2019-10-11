@@ -35,7 +35,11 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
-        return "";
+        int sum = 0;
+        for (int i = number; i > 0; i /= 10) {
+            sum += i % 10;
+        }
+        return String.format("The sum of all digits in %d is %d", number, sum);
     }
 
     /**
