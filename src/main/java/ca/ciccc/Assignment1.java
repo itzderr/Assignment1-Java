@@ -50,7 +50,13 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
-        return "";
+        int minutesInDay = 60 * 24;
+        int minutesInYear = minutesInDay * 365;
+
+        int years = mins / minutesInYear;
+        int days = mins % minutesInYear / minutesInDay;
+
+        return String.format("%d minutes is approximately %d years and %d days", mins, years, days);
     }
 
     /**
