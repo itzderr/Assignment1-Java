@@ -1,5 +1,7 @@
 package ca.ciccc;
 
+import java.math.BigDecimal;
+
 public class Assignment1 {
 
     /**
@@ -13,7 +15,6 @@ public class Assignment1 {
 
         double celsius = (degree - 32) * ((double) 5 / 9);
         String result = String.format("%.1f degree Fahrenheit is equal to %.1f in Celsius", degree, celsius);
-
         return result;
     }
 
@@ -26,7 +27,11 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
 
-        return "";
+        double meters = inches * 0.0254;
+        String result = String.format("%.1f inches is %.1f meters",(double)inches,meters);
+
+        return result;
+
     }
 
     /**
@@ -37,8 +42,17 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
+        int firstDigit = number % 10;
+        int remainingNumber = number / 10;
+        int SecondDigit = remainingNumber % 10;
+        remainingNumber = remainingNumber / 10;
+        int thirdDigit = remainingNumber % 10;
+        remainingNumber = remainingNumber / 10;
+        int fourthDigit = remainingNumber % 10;
+        int sum = thirdDigit + SecondDigit + firstDigit + fourthDigit;
 
-        return "";
+        String result = String.format("The sum of all digits in %d is %d",number, sum);
+        return result;
     }
 
     /**
@@ -50,7 +64,10 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+        long years = (long) (mins / (60* 24 * 365));
+        int days = (int) (mins / 60 / 24) % 365;
+
+        return (int) mins + " minutes is approximately " + years + " years and " + days + " days";
     }
 
     /**
@@ -63,8 +80,11 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
+        double bmi = kgs / (meters * meters);
+        String result = String.format("Body Mass Index is %.3f", (double) bmi);
 
-        return "";
+        return result;
+
     }
 
     /**
@@ -83,19 +103,29 @@ public class Assignment1 {
      * @param minutes
      * @param seconds
      * @return
-     *      "Your speed in meters/second is 0.1169
-     *       Your speed in km/h is 0.4208
-     *       Your speed in miles/h is 0.2615"
+     *      *      "Your speed in meters/second is 0.1169
+     *      *       Your speed in km/h is 0.4208
+     *      *       Your speed in miles/h is 0.2615"
      */
-    public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+    public static String speed(int meters, int hours, int minutes, int seconds) {
+        float timeSeconds = (hours * 3600) + (minutes * 60) + seconds;
+        float mps = meters / timeSeconds;
+        float kph = (meters/1000.0f ) / (timeSeconds/3600.0f );
+        float mph = kph / 1.609f;
+
+
+        String result = String.format("Your speed in meters/second is %.4f\n" +
+                "Your speed in km/h is %.4f\n" +
+                "Your speed in miles/h is %.4f",(float)mps, BigDecimal.valueOf(kph).setScale(4,BigDecimal.ROUND_DOWN),BigDecimal.valueOf(mph).setScale(4,BigDecimal.ROUND_DOWN));
+        return result;
     }
+
 
     /**
      * Write a function that reads a number and display the square,
      * cube, and the fourth power.
-     * Sample Input :
+     * SSample Input :
      * number = 5
      *
      * @param number
@@ -105,7 +135,9 @@ public class Assignment1 {
      */
     public static String powers(int number) {
 
-        return "";
+        String result = String.format("Square: %d\n"+ "Cube: %d\n"+
+                "Fourth power: %.0f", number*number, number*number*number, Math.pow(number, 4));
+        return result;
     }
 
     /**
@@ -128,6 +160,13 @@ public class Assignment1 {
      */
     public static String arithmetic(int a, int b) {
 
-        return "";
+        String result = String.format("Sum of two integers: %d\n"+
+                "Difference of two integers: %d\n"+
+                "Product of two integers: %d\n"+
+                "Average of two integers: %.2f\n"+
+                "Distance of two integers: %d\n"+
+                "Max integer: %d\n"+
+                "Min integer: %d", (int)a+b,(int)a-b,(int)a*b,(double)(a+b)/2,(int) Math.abs(a-b),(int)Math.max(a,b), (int)Math.min(a,b));
+        return result;
     }
 }
