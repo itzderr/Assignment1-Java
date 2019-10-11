@@ -1,3 +1,5 @@
+package ca.ciccc;
+
 import java.text.DecimalFormat;
 
 public class Assignment1 {
