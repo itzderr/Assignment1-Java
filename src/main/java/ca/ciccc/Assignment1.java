@@ -1,5 +1,9 @@
 package ca.ciccc;
 
+import java.lang.reflect.Array;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Assignment1 {
 
     /**
@@ -25,8 +29,9 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
-
-        return "";
+        double meters = inches * (25.4 / 1000);
+        String result = String.format("%.1f inches is %.1f meters", (float) inches, meters);
+        return result;
     }
 
     /**
@@ -37,8 +42,14 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
-
-        return "";
+        String str = Integer.toString(number);
+        String[] arr = str.split("", 3);
+        Integer total = 0;
+        for (int i = 0; i < arr.length; i++) {
+            total += Integer.parseInt(arr[i]);
+        }
+        String result = String.format("The sum of all digits in %d is %d", number, total);
+        return result;
     }
 
     /**
@@ -49,8 +60,10 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
-
-        return "";
+        Integer years = mins / (60 * 24 * 365);
+        Integer days = (mins / (60 * 24)) % 365;
+        String result = String.format("3456789 minutes is approximately %d years and %d days", years, days);
+        return result;
     }
 
     /**
@@ -63,8 +76,9 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-
-        return "";
+        Double bmi = kgs / Math.pow(meters, 2);
+        String result = String.format("Body Mass Index is %.3f", bmi);
+        return result;
     }
 
     /**
@@ -88,8 +102,27 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
+        Double allSec = (double) (hours * 60 * 60 + minutes * 60 + seconds);
+        Double allHour = (double) (hours + ((double) minutes / 60) + ((double) seconds / (60 * 60)));
+        Double km = (double) meters / 1000;
+        Double miles = (double) meters / 1609;
 
-        return "";
+        Double ms = (double) (meters / allSec);
+        Double kmh = (double) (km / allHour);
+        Double mih = (double) (miles / allHour);
+
+        BigDecimal bdms = new BigDecimal(String.valueOf(ms));
+        BigDecimal bdkmh = new BigDecimal(String.valueOf(kmh));
+        BigDecimal bdmih = new BigDecimal(String.valueOf(mih));
+
+        // BigDecimal bgms1 = bdms.setScale(4, BigDecimal.ROUND_DOWN);
+        BigDecimal bdms1 = bdms.setScale(4, RoundingMode.DOWN);
+        BigDecimal bdkmh1 = bdkmh.setScale(4, RoundingMode.DOWN);
+        BigDecimal bdmih1 = bdmih.setScale(4, RoundingMode.DOWN);
+
+        String result = String.format("Your speed in meters/second is %.4f\nYour speed in km/h is %.4f\nYour speed in miles/h is %.4f",
+        bdms1, bdkmh1, bdmih1);
+        return result;
     }
 
     /**
@@ -104,8 +137,11 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
-
-        return "";
+        Integer square = (int) Math.pow(number, 2);
+        Integer cube = (int) Math.pow(number, 3);
+        Integer forth = (int) Math.pow(number, 4);
+        String result = String.format("Square: %d\nCube: %d\nFourth power: %d", square, cube, forth);
+        return result;
     }
 
     /**
@@ -127,7 +163,19 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
-
-        return "";
+        if (a < b) {
+            Integer temp = a;
+            a = b;
+            b = temp;
+        }
+        Integer sum = a + b;
+        Integer diff = a - b;
+        Integer pro = a * b;
+        Double ave = (double) ((a + b) / 2);
+        Integer dist = Math.abs(a - b);
+        Integer max = a;
+        Integer min = b;
+        String result = String.format("Sum of two integers: %d\nDifference of two integers: %d\nProduct of two integers: %d\nAverage of two integers: %.2f\nDistance of two integers: %d\nMax integer: %d\nMin integer: %d", sum, diff, pro, ave, dist, max, min);
+        return result;
     }
 }
