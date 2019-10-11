@@ -163,6 +163,21 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
-        return "";
+        return String.format(
+            "Sum of two integers: %d\n"
+                + "Difference of two integers: %d\n"
+                + "Product of two integers: %d\n"
+                + "Average of two integers: %.2f\n"
+                + "Distance of two integers: %d\n"
+                + "Max integer: %d\n"
+                + "Min integer: %d",
+            a + b,
+            a - b,
+            a * b,
+            (double)(a + b) / 2,
+            Math.abs(a - b),
+            Math.max(a, b),
+            Math.min(a, b)
+        );
     }
 }
