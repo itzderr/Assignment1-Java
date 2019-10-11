@@ -10,7 +10,6 @@ public class Assignment1 {
      * @return "212.0 degree Fahrenheit is equal to 100.0 in Celsius"
      */
     public static String fahrenheitToCelsius(double degree) {
-
         double celsius = (degree - 32) * ((double) 5 / 9);
         String result = String.format("%.1f degree Fahrenheit is equal to %.1f in Celsius", degree, celsius);
 
@@ -25,7 +24,6 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
-
         return "";
     }
 
@@ -37,7 +35,6 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
-
         return "";
     }
 
@@ -49,7 +46,6 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
-
         return "";
     }
 
@@ -63,7 +59,6 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-
         return "";
     }
 
@@ -88,7 +83,6 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
-
         return "";
     }
 
@@ -104,7 +98,6 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
-
         return "";
     }
 
@@ -127,7 +120,6 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
-
         return "";
     }
 }
