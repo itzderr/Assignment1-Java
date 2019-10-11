@@ -131,7 +131,17 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
-        return "";
+        int square = number * number;
+        int cube = square * number;
+        int fourthPower = cube * number;
+        return String.format(
+            "Square: %d\n"
+                + "Cube: %d\n"
+                + "Fourth power: %d",
+            square,
+            cube,
+            fourthPower
+        );
     }
 
     /**
