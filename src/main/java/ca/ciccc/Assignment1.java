@@ -24,7 +24,7 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
-        return "";
+        return String.format("%d.0 inches is %.1f meters", inches, (float)(inches * 0.0254));
     }
 
     /**
