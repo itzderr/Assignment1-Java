@@ -1,5 +1,8 @@
 package ca.ciccc;
 
+import java.text.DecimalFormat;
+import java.math.RoundingMode;
+
 public class Assignment1 {
 
     /**
@@ -73,23 +76,6 @@ public class Assignment1 {
     }
 
     /**
-     * Format speed into specified length of string with zero padding if needed
-     * @param  speed
-     * @param  length
-     * @return formatted string
-     */
-    private static String formatSpeed(double speed, int length) {
-        String s = String.valueOf(speed);
-        if (s.length() >= length) {
-            return s.substring(0, length);
-        }
-        for (int i = length -  s.length(); i > 0; i--) {
-            s += "0";
-        }
-        return s;
-    }
-
-    /**
      * Write a function that takes a distance (in meters) and the time was taken
      * (as three numbers: hours, minutes, seconds), and display the speed, in meters
      * per second, kilometers per hour and miles per hour
@@ -120,13 +106,16 @@ public class Assignment1 {
         double kilometersPerHour = distance / 1000 / durationInhour;
         double milesPerHour = distance / 1609 / durationInhour;
 
+        DecimalFormat df = new DecimalFormat("0.0000");
+        df.setRoundingMode(RoundingMode.FLOOR);
+
         return String.format(
             "Your speed in meters/second is %s\n"
                 + "Your speed in km/h is %s\n"
                 + "Your speed in miles/h is %s",
-            formatSpeed(metersPerSecond, 6),
-            formatSpeed(kilometersPerHour, 6),
-            formatSpeed(milesPerHour, 6)
+            df.format(metersPerSecond),
+            df.format(kilometersPerHour),
+            df.format(milesPerHour)
         );
     }
 
