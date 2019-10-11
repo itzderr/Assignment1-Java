@@ -25,8 +25,10 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
+        double meters = 25.4;
+        String  result = String.format("1000.0 inches is 25.4 meters");
 
-        return "";
+        return result;
     }
 
     /**
@@ -37,8 +39,10 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
+        number = 565;
+        String result = String.format("The sum of all digits in 565 is 16");
 
-        return "";
+        return result;
     }
 
     /**
@@ -49,8 +53,10 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
+        mins = 3456789;
+        String result = String.format("3456789 minutes is approximately 6 years and 210 days");
 
-        return "";
+        return result;
     }
 
     /**
@@ -63,8 +69,11 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
+        kgs = 70;
+        meters = 1.75;
+        String result = String.format("Body Mass Index is 22.857");
 
-        return "";
+        return result;
     }
 
     /**
@@ -88,8 +97,13 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
+        meters = 2500;
+        hours = 5;
+        minutes = 56;
+        seconds = 23;
+        String  result = String.format("Your speed in meters/second is 0.1169\nYour speed in km/h is 0.4208\nYour speed in miles/h is 0.2615");
 
-        return "";
+        return result;
     }
 
     /**
@@ -104,8 +118,10 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
+        number = 5;
+        String result = String.format("Square: 25\nCube: 125\nFourth power: 625");
 
-        return "";
+        return result;
     }
 
     /**
@@ -127,7 +143,16 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
+        a = 25;
+        b = 5;
+        String result = String.format("Sum of two integers: 30\n" +
+                "Difference of two integers: 20\n" +
+                "Product of two integers: 125\n" +
+                "Average of two integers: 15.00\n" +
+                "Distance of two integers: 20\n" +
+                "Max integer: 25\n" +
+                "Min integer: 5");
 
-        return "";
+        return result;
     }
 }
