@@ -69,7 +69,7 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-        return "";
+        return String.format("Body Mass Index is %.3f", kgs / (meters * meters));
     }
 
     /**
