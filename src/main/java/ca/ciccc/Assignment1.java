@@ -73,6 +73,23 @@ public class Assignment1 {
     }
 
     /**
+     * Format speed into specified length of string with zero padding if needed
+     * @param  speed
+     * @param  length
+     * @return formatted string
+     */
+    private static String formatSpeed(double speed, int length) {
+        String s = String.valueOf(speed);
+        if (s.length() >= length) {
+            return s.substring(0, length);
+        }
+        for (int i = length -  s.length(); i > 0; i--) {
+            s += "0";
+        }
+        return s;
+    }
+
+    /**
      * Write a function that takes a distance (in meters) and the time was taken
      * (as three numbers: hours, minutes, seconds), and display the speed, in meters
      * per second, kilometers per hour and miles per hour
@@ -93,7 +110,24 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
-        return "";
+        double distance = meters;
+        int secondsInMinute = 60;
+        int secondsInHour = secondsInMinute * 60;
+        int durationInSecond = secondsInHour * hours + secondsInMinute * minutes + seconds;
+        double durationInhour = (double)durationInSecond / secondsInHour;
+
+        double metersPerSecond = distance / durationInSecond;
+        double kilometersPerHour = distance / 1000 / durationInhour;
+        double milesPerHour = distance / 1609 / durationInhour;
+
+        return String.format(
+            "Your speed in meters/second is %s\n"
+                + "Your speed in km/h is %s\n"
+                + "Your speed in miles/h is %s",
+            formatSpeed(metersPerSecond, 6),
+            formatSpeed(kilometersPerHour, 6),
+            formatSpeed(milesPerHour, 6)
+        );
     }
 
     /**
