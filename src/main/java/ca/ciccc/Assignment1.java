@@ -1,6 +1,30 @@
 package ca.ciccc;
 
+import jdk.nashorn.internal.runtime.regexp.joni.ScanEnvironment;
+
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
 public class Assignment1 {
+
+    public static void main(String[] args) {
+
+        System.out.println(Assignment1.dotFix(222.444, "#######.###"));
+
+    }
+
+    // colaboration of Douglas Cioli fixing comma to dot
+    public static String dotFix(double value, String pattern) {
+        // jerry-rigged by Douglas to help pt-Br students.
+        DecimalFormat df = new DecimalFormat(pattern);
+        String tmp = df.format(value);
+        tmp = tmp.replace(",", ".");
+
+        return tmp;
+    }
 
     /**
      * Write a function to convert temperature from Fahrenheit to Celsius degree
@@ -11,10 +35,11 @@ public class Assignment1 {
      */
     public static String fahrenheitToCelsius(double degree) {
 
-        double celsius = (degree - 32) * ((double) 5 / 9);
-        String result = String.format("%.1f degree Fahrenheit is equal to %.1f in Celsius", degree, celsius);
+//      definir variável como float
+        double temperatura;
 
-        return result;
+        temperatura = (double) ((degree - 32)*5)/9;
+        return degree + " degree Fahrenheit is equal to " + temperatura + " in Celsius";
     }
 
     /**
@@ -26,7 +51,15 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
 
-        return "";
+        // Douglas Cioli help me with this one
+
+        double m = inches * 0.0254;
+
+        DecimalFormat dec = new DecimalFormat("########.0");
+
+        return dec.format(inches) + " inches is " + m + " meters";
+
+
     }
 
     /**
@@ -38,7 +71,21 @@ public class Assignment1 {
      */
     public static String addDigits(int number) {
 
-        return "";
+//        // prompt the user simulation
+
+
+        int lessThan1000 = number % 10; // Extract the digit less than 10
+        number /= 10;                   // Remove the extracted digit
+
+        int digits = number % 10;       // Extract the digit between 10 to 99
+        number /= 10;                   // Remove the extracted digit
+
+        int digitsHundered = number % 10;// Extract the digit between 100 to 999
+        number /= 10;                   // Remove the extracted digit
+
+        int sum = digitsHundered + digits + lessThan1000;
+
+        return "The sum of all digits in " + "565" + " is " + sum;
     }
 
     /**
@@ -50,7 +97,14 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+// my reference: https://www.w3resource.com/java-exercises/datatypes/java-datatype-exercise-4.php
+
+        double minYears = 60 * 24 * 365;
+
+        long years = (long) (mins / minYears);
+        int days = (int) (mins / 60 / 24 ) % 365;
+
+        return mins + " minutes is approximately " + years + " years and " + days + " days";
     }
 
     /**
@@ -64,7 +118,13 @@ public class Assignment1 {
      */
     public static String bmi(int kgs, double meters) {
 
-        return "";
+        int w = 70;
+        double m = 1.75;
+
+        // calculating the body mass BMI = weight / height^2
+        double BMI = w / (Math.pow(m, 2));
+
+        return "Body Mass Index is " + Assignment1.dotFix(BMI, "########.###");
     }
 
     /**
@@ -89,7 +149,38 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+        Scanner user_input = new Scanner(System.in);
+
+        // variables:
+
+        float totalTime;
+        float mps, kph, mph;
+
+
+        // user inputs:
+
+        System.out.print("Type the distance in meters: ");
+        float dist = user_input.nextFloat();
+
+        System.out.print("Type the hours: ");
+        float hr = user_input.nextFloat();
+
+        System.out.print("Type the minutes: ");
+        float min = user_input.nextFloat();
+
+        System.out.print("Type the seconds: ");
+        float sec = user_input.nextFloat();
+
+        // caltulating...
+
+        totalTime = (hr * 3600) + (min * 60) + sec;
+        mps = dist / totalTime;
+        kph = (dist / 1000.0f) / (totalTime / 3600.0f);
+        mph = kph / 1.609f;
+
+        // result:
+
+        return "Your speed in meters/second is " + mps + "\n" + "Your speed in km/h is " + kph + "\n" + "Your speed in miles/h is " + mph;
     }
 
     /**
@@ -105,7 +196,21 @@ public class Assignment1 {
      */
     public static String powers(int number) {
 
-        return "";
+        // variables:
+        int square;
+        int cube;
+        int fourPower;
+
+
+        // calculating...
+
+        square = (int) Math.pow(number, 2);
+        cube = (int) Math.pow(number, 3);
+        fourPower = (int) Math.pow(number, 4);
+
+
+        //result
+        return "Square: " + square + "\n" + "Cube: " + cube + "\n" + "Fourth power: " + fourPower;
     }
 
     /**
@@ -128,6 +233,21 @@ public class Assignment1 {
      */
     public static String arithmetic(int a, int b) {
 
-        return "";
+        int dif = a - b; dif *= dif < 0 ?-1:1;
+
+        int sum = (a + b);
+        int pro = (a * b);
+        int ave = ((a + b) / 2);
+        int dis = (a-b);
+        int max = ((a > b)?a:b);
+        int min = ((a < b)?a:b);
+
+        return "Sum of two integers: " + sum + "\n" +
+                "Difference of two integers: " + dif + "\n" +
+                "Product of two integers: " + pro + "\n" +
+                "Average of two integers: " + ave + ".00\n" +
+                "Distance of two integers: " + dis + "\n" +
+                "Max integer: " + max + "\n" +
+                "Min integer: " + min;
     }
 }
