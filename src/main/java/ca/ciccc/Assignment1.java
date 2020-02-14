@@ -1,5 +1,9 @@
 package ca.ciccc;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Locale;
+
 public class Assignment1 {
 
     /**
@@ -12,7 +16,7 @@ public class Assignment1 {
     public static String fahrenheitToCelsius(double degree) {
 
         double celsius = (degree - 32) * ((double) 5 / 9);
-        String result = String.format("%.1f degree Fahrenheit is equal to %.1f in Celsius", degree, celsius);
+        String result = String.format(Locale.CANADA,"%.1f degree Fahrenheit is equal to %.1f in Celsius", degree, celsius);
 
         return result;
     }
@@ -26,7 +30,10 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
 
-        return "";
+        double meters = inches * 0.0254;
+        double new_inches = Double.valueOf(inches);
+        String result = String.format(Locale.CANADA, "%.1f inches is %.1f meters",new_inches,meters );
+        return result;
     }
 
     /**
@@ -38,7 +45,12 @@ public class Assignment1 {
      */
     public static String addDigits(int number) {
 
-        return "";
+        char[] list = String.valueOf(number).toCharArray();
+        Integer sum = 0;
+        for( char c : list ){
+             sum = sum + Integer.valueOf(""+c);
+        }
+        return String.format("The sum of all digits in %d is %d", number,sum);
     }
 
     /**
@@ -50,7 +62,13 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+        Integer amountDays = (int) (mins / 1440);
+        Integer days = amountDays % 365;
+
+        Integer years = (int)(amountDays / 365);
+
+
+        return  String.format("%d minutes is approximately %d years and %d days", mins,years,days);
     }
 
     /**
@@ -63,8 +81,9 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-
-        return "";
+        double weightCalc = meters * meters;
+        double bmi = (double) kgs / weightCalc;
+        return String.format(Locale.CANADA,"Body Mass Index is %.3f", bmi);
     }
 
     /**
@@ -89,7 +108,19 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+        int totalSeconds = (hours * 3600) + (minutes * 60) + seconds;
+        double meterSecond =  (double) meters / totalSeconds;
+        double kmHour = meterSecond * 3.6;
+        double mileHour =  meterSecond * 2.23694;
+        BigDecimal bdMeterSecond = new BigDecimal(meterSecond).setScale(4, RoundingMode.FLOOR);
+        BigDecimal bdKmHour = new BigDecimal(kmHour).setScale(4, RoundingMode.FLOOR);
+        BigDecimal bdMileHour = new BigDecimal(mileHour).setScale(4, RoundingMode.FLOOR);
+
+        String result = String.format(Locale.CANADA, "Your speed in meters/second is %.4f\n"
+                + "Your speed in km/h is %.4f\n"
+                + "Your speed in miles/h is %.4f", bdMeterSecond, bdKmHour,bdMileHour );
+
+        return result;
     }
 
     /**
@@ -105,7 +136,14 @@ public class Assignment1 {
      */
     public static String powers(int number) {
 
-        return "";
+        double square = Math.pow(number,2);
+        double cube = Math.pow(number,3);
+        double fourth = Math.pow(number,4);
+
+
+        return String.format("Square: %.0f\n"
+                + "Cube: %.0f\n"
+                + "Fourth power: %.0f", square,cube,fourth);
     }
 
     /**
@@ -128,6 +166,23 @@ public class Assignment1 {
      */
     public static String arithmetic(int a, int b) {
 
-        return "";
+        if (b > a){
+            a = a + b;
+            b = a - b;
+            a = a - b;
+        }
+        int sum =  a + b;
+        int difference = a - b;
+        int product  = a * b;
+        double avarege = sum / 2;
+        String result = String.format(Locale.CANADA,"Sum of two integers: %d\n"
+                + "Difference of two integers: %d\n"
+                + "Product of two integers: %d\n"
+                + "Average of two integers: %.2f\n"
+                + "Distance of two integers: %d\n"
+                + "Max integer: %d\n"
+                + "Min integer: %d",sum,difference,product,avarege,difference,a,b);
+
+        return result;
     }
 }
