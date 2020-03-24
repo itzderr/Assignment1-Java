@@ -1,5 +1,6 @@
 package ca.ciccc;
 
+
 public class Assignment1 {
 
     /**
@@ -26,7 +27,10 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
 
-        return "";
+        double meters = inches / 39.370f;
+        String result = String.format("%.1f inches is %.1f meters", Double.valueOf(inches), meters);
+
+        return result;
     }
 
     /**
@@ -38,7 +42,17 @@ public class Assignment1 {
      */
     public static String addDigits(int number) {
 
-        return "";
+        int sum = 0;
+        char[] sNum = String.valueOf(number).toCharArray();
+        //String temp = Integer.toString(number);
+        for (char n : sNum)
+        {
+            sum = sum + Integer.valueOf("" + n);
+        }
+
+
+
+        return String.format("The sum of all digits in %s is %s", String.valueOf(number), String.valueOf(sum));
     }
 
     /**
@@ -50,7 +64,12 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+
+        int rawDays = mins / 1440;
+        int days = rawDays % 365;
+        int years = mins / 525600;
+
+        return String.format("%d minutes is approximately %d years and %d days", mins, years, days);
     }
 
     /**
@@ -64,7 +83,10 @@ public class Assignment1 {
      */
     public static String bmi(int kgs, double meters) {
 
-        return "";
+        float bmIndex = (float) (kgs / (meters * meters));
+
+
+        return String.format("Body Mass Index is %.3f", bmIndex);
     }
 
     /**
@@ -89,7 +111,17 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+        float sTime = hours * 3600 + minutes * 60 + seconds;
+        float metSpeed =  meters / sTime;
+        float kmSpeed =  (metSpeed * 18) / 5;
+        float milSpeed = metSpeed / 0.44704f;
+
+
+        return String.format("Your speed in meters/second is %.4f" +
+                                "\nYour speed in km/h is %.4f" +
+                                "\nYour speed in miles/h is %.4f", metSpeed, kmSpeed, milSpeed);
+
+        // Tried to find the right syntax online to trancate the value, couldn't do it.
     }
 
     /**
@@ -104,8 +136,11 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
+        int sNumber = number * number;
+        int tNumber = number * number * number;
+        int fNumber = number * number * number * number;
 
-        return "";
+        return String.format("Square: %d\nCube: %d\nFourth power: %d", sNumber, tNumber, fNumber);
     }
 
     /**
@@ -128,6 +163,22 @@ public class Assignment1 {
      */
     public static String arithmetic(int a, int b) {
 
-        return "";
+        int sum = a + b;
+        int dif = a - b;
+        int prod = a * b;
+        float avrg = (a + b) / 2;
+        int dist = Math.abs(a - b );
+        int maxNum = Math.max(a, b);
+        int minNum = Math.min(a, b);
+
+
+        return String.format("Sum of two integers: %d" +
+                        "\nDifference of two integers: %d" +
+                        "\nProduct of two integers: %d" +
+                        "\nAverage of two integers: %.2f" +
+                        "\nDistance of two integers: %d" +
+                        "\nMax integer: %d" +
+                        "\nMin integer: %d",
+                        sum, dif, prod, avrg, dist, maxNum, minNum);
     }
 }
