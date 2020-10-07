@@ -1,5 +1,7 @@
 package ca.ciccc;
 
+import java.math.BigDecimal;
+
 public class Assignment1 {
 
     /**
@@ -25,8 +27,8 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
-
-        return "";
+        double meter = inches * 0.0254;
+        return String.format("1000.0 inches is %.1f meters", meter);
     }
 
     /**
@@ -37,8 +39,13 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
-
-        return "";
+        int answer = number;
+        int sum    = 0;
+        while (number != 0) {
+            sum += number % 10;
+            number /= 10;
+        }
+        return String.format("The sum of all digits in %d is %d", answer, sum);
     }
 
     /**
@@ -49,8 +56,9 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
-
-        return "";
+        int years = mins / 525600;
+        int days = mins % 525600 / 1440;
+        return String.format("%d minutes is approximately %d years and %d days", mins, years, days);
     }
 
     /**
@@ -63,8 +71,8 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-
-        return "";
+        double result = kgs / meters / meters;
+        return String.format("Body Mass Index is %.3f", result);
     }
 
     /**
@@ -88,8 +96,19 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
-
-        return "";
+        double hourToSecond = hours * 60 * 60;
+        double minutToSecond = minutes * 60;
+        double total = hourToSecond + minutToSecond + seconds;
+        double perSecond = meters / total;
+        double perHour = perSecond * 3.6;
+        double perMile = perHour / 1.61;
+        String formated = "Your speed in meters/second is %.4f\n" +
+                "Your speed in km/h is %.4f\n" +
+                "Your speed in miles/h is %.4f";
+        return String.format(formated,
+                perSecond,
+                toDecimal(perHour, BigDecimal.ROUND_DOWN),
+                toDecimal(perMile, BigDecimal.ROUND_UP));
     }
 
     /**
@@ -104,8 +123,10 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
-
-        return "";
+        int square = number * number;
+        int qube = square * number;
+        int fourthP = qube * number;
+        return String.format("Square: %d\nCube: %d\nFourth power: %d", square, qube, fourthP);
     }
 
     /**
@@ -127,7 +148,38 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
+        int sum = a + b;
+        int diff = a - b;
+        int pOfTwo = a * b;
+        double average = (a + b) / 2;
+        int dist = Math.abs(getBigger(a, b) - getSmaller(a, b));
+        int max = getBigger(a, b);
+        int min = getSmaller(a, b);
+        String formated = "Sum of two integers: %d\n" +
+                "Difference of two integers: %d\n" +
+                "Product of two integers: %d\n" +
+                "Average of two integers: %.2f\n" +
+                "Distance of two integers: %d\n" +
+                "Max integer: %d\nMin integer: %d";
+        return String.format(formated,
+                sum,
+                diff,
+                pOfTwo,
+                average,
+                dist,
+                max,
+                min);
+    }
 
-        return "";
+    public static BigDecimal toDecimal(double n, int roundingMode) {
+        return new BigDecimal(n).setScale(4, roundingMode);
+    }
+
+    public static int getBigger(int x, int y) {
+        return x > y? x : y;
+    }
+
+    public static int getSmaller(int x, int y) {
+        return x > y? y : x;
     }
 }
