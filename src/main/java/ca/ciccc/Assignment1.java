@@ -25,8 +25,9 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
-
-        return "";
+        double metre = (double) inches * 0.0254;
+        String result = String.format("%.1f inches is %.1f meters", (double) inches, metre);
+        return result;
     }
 
     /**
@@ -37,8 +38,12 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
-
-        return "";
+        int digit;
+        if (0 <= digit && digit <= 1000) {
+            int digits +=number;
+        }
+        String result=String.format("The sum of all digits in %.1d is %.1d", digit, number);
+        return result;
     }
 
     /**
@@ -49,8 +54,10 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
-
-        return "";
+    int year=mins/525600;
+    int day=mins/14400;
+    String result=String.format("%.1d minutes is approximately %.1d years and %.1d days", mins, year, day);
+        return result;
     }
 
     /**
@@ -63,8 +70,11 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-
-        return "";
+    int weight=kgs;
+    double height=meters;
+        double bmi= (double)weight/height*height;
+        String result=String.format("Body Mass Index is %.1f", bmi,);
+        return result;
     }
 
     /**
