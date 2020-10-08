@@ -28,7 +28,7 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
         double meter = inches * 0.0254;
-        return String.format("1000.0 inches is %.1f meters", meter);
+        return String.format("%.1f inches is %.1f meters", (double)inches, meter);
     }
 
     /**
