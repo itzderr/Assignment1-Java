@@ -120,9 +120,6 @@ public class Assignment1 {
                 meter,km,mil);
         return result;
     }
-    public static void main(String[] args) {
-        System.out.print(speed(2500, 5, 56, 23));
-    }
 
     /**
      * Write a function that reads a number and display the square,
