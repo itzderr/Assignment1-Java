@@ -189,7 +189,7 @@ public class Assignment1 {
         result += String.format("Average of two integers: %.2f\n", (double) Math.addExact(a, b) / 2);
         result += String.format("Distance of two integers: %d\n", Math.abs(a - b));
         result += String.format("Max integer: %d\n", Math.max(a, b));
-        result += String.format("Min integer: %d\n", Math.min(a, b));
+        result += String.format("Min integer: %d", Math.min(a, b));
         return result;
     }
 }
