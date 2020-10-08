@@ -145,7 +145,7 @@ public class Assignment1 {
         String result = "";
         result += String.format("Square: %d\n", (int) Math.pow(number, 2));
         result += String.format("Cube: %d\n", (int) Math.pow(number, 3));
-        result += String.format("Fourth: %d", (int) Math.pow(number, 4));
+        result += String.format("Fourth power: %d", (int) Math.pow(number, 4));
         return result;
     }
     public static String powersLoop(int number) {
