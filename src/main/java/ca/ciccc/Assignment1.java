@@ -1,4 +1,5 @@
 package ca.ciccc;
+import java.math.BigDecimal;
 
 public class Assignment1 {
 
@@ -25,8 +26,11 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
+        double i = inches;
+        double meters = inches / 39.37;
+        String result = String.format("%.1f inches is %.1f meters", i, meters);
 
-        return "";
+        return result;
     }
 
     /**
@@ -37,8 +41,14 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
-
-        return "";
+        int i = number;
+        int sum = 0;
+        while (number > 0) {
+            sum += number % 10;
+            number /= 10;
+        }
+        String result = String.format("The sum of all digits in %d is %d", i, sum);
+        return result;
     }
 
     /**
@@ -49,8 +59,13 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
+        int hours = mins/60;
+        int day = hours/24;
+        int years = day/365;
+        int days = day%365;
 
-        return "";
+        String result = String.format("%d minutes is approximately %d years and %d days", mins, years, days);
+        return result;
     }
 
     /**
@@ -63,8 +78,9 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-
-        return "";
+        double bmi = kgs / (meters*meters);
+        String result = String.format("Body Mass Index is %.3f", bmi);
+        return result;
     }
 
     /**
@@ -88,8 +104,24 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
+        int second = (hours*60*60 + minutes*60 + seconds);
+        double hour = (double)second/(60*60);
+        double meter = (double)meters/second;
+        double kilo = (double)meters/1000;
+        double km_h = kilo/hour;
+        BigDecimal km = new BigDecimal(km_h).setScale(4, BigDecimal.ROUND_DOWN);
+        double mile = (double)meters / 1609;
+        double mile_h = mile/hour;
+        BigDecimal mil = new BigDecimal(mile_h).setScale(4, BigDecimal.ROUND_DOWN);
 
-        return "";
+        String result = String.format("Your speed in meters/second is %.4f\n" +
+                        "Your speed in km/h is %s\n" +
+                        "Your speed in miles/h is %s",
+                meter,km,mil);
+        return result;
+    }
+    public static void main(String[] args) {
+        System.out.print(speed(2500, 5, 56, 23));
     }
 
     /**
@@ -104,8 +136,11 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
-
-        return "";
+        int Square = number*number;
+        int Cube = number*number*number;
+        int Fourth_power = number*number*number*number;
+        String result = String.format("Square: %d\nCube: %d\nFourth power: %d", Square,Cube,Fourth_power);
+        return result;
     }
 
     /**
@@ -127,7 +162,21 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
+        int sum = a + b;
+        int diff = a - b;
+        int product = a*b;
+        double average = (double) sum/2;
+        int distance = Math.abs(diff);
+        int max = Math.max(a,b);
+        int min = Math.min(a,b);
 
-        return "";
+        String result = String.format("Sum of two integers: %d\n" +
+                        "Difference of two integers: %d\n" +
+                        "Product of two integers: %d\n" +
+                        "Average of two integers: %.2f\n" +
+                        "Distance of two integers: %d\n" +
+                        "Max integer: %d\nMin integer: %d",
+                sum,diff,product,average,distance,max,min);
+        return result;
     }
 }
