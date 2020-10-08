@@ -1,5 +1,8 @@
 package ca.ciccc;
 
+import java.sql.Time;
+import java.text.DecimalFormat;
+
 public class Assignment1 {
 
     /**
@@ -25,8 +28,8 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
-
-        return "";
+        double meter = inches * 0.0254;
+        return (double) inches + " inches is " + meter + " meters";
     }
 
     /**
@@ -37,8 +40,12 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
+        int sum = 0;
 
-        return "";
+        for(char num: String.valueOf(number).toCharArray())
+            sum += Integer.parseInt(String.valueOf(num));
+
+        return "The sum of all digits in " + number + " is " + sum;
     }
 
     /**
@@ -49,8 +56,10 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
+        int days = (mins / 1440) % 365;
+        int years = (mins / 1440) / 365;
 
-        return "";
+        return mins + " minutes is approximately " + years + " years and " + days + " days";
     }
 
     /**
@@ -63,8 +72,9 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-
-        return "";
+        DecimalFormat df = new DecimalFormat("#.###");
+        double bmi = kgs / Math.pow(meters, 2);
+        return "Body Mass Index is " + df.format(bmi);
     }
 
     /**
@@ -88,8 +98,16 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
+        double allSeconds = ((hours * 60) + minutes) * 60 + seconds;
+        DecimalFormat df = new DecimalFormat("#.####");
+        double mps = meters / allSeconds;
+        double kph = Double.valueOf(df.format(mps)) * 3.6;
+        double mph = Double.valueOf(df.format(kph)) * 0.621371;
 
-        return "";
+        return "Your speed in meters/second is " + df.format(mps) +
+                "\nYour speed in km/h is " + df.format(kph) +
+                "\nYour speed in miles/h is " + df.format(mph);
+
     }
 
     /**
@@ -105,7 +123,9 @@ public class Assignment1 {
      */
     public static String powers(int number) {
 
-        return "";
+        return "Square: " + (int) Math.pow(number,2) +
+                "\nCube: " + (int) Math.pow(number,3) +
+                "\nFourth power: " + (int) Math.pow(number,4) ;
     }
 
     /**
@@ -127,7 +147,20 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
-
-        return "";
+        int max = 0;
+        int min = 0;
+        if (a > b) {
+            max = a; min = b;
+        } else {
+            max = b; min = a;
+        }
+        DecimalFormat df = new DecimalFormat("#.00");
+        return "Sum of two integers: " + (max + min) +
+                "\nDifference of two integers: " + (max - min) +
+                "\nProduct of two integers: " + max * min +
+                "\nAverage of two integers: " + df.format((double) (max + min) / 2) +
+                "\nDistance of two integers: " + (max - min) +
+                "\nMax integer: " + max +
+                "\nMin integer: " + min;
     }
 }
