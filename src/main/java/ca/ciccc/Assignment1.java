@@ -1,5 +1,6 @@
 package ca.ciccc;
 
+
 public class Assignment1 {
 
     /**
@@ -26,7 +27,7 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
 
-        return "";
+        return  String.format("1000.0 inches is %.1f meters", 0.0254*inches);
     }
 
     /**
@@ -38,7 +39,15 @@ public class Assignment1 {
      */
     public static String addDigits(int number) {
 
-        return "";
+        int total = 0;
+        int n = number; //Store to another variable to keep original value.
+
+        while(n != 0){
+            total += n%10;
+            n /= 10;
+        }
+
+        return String.format("The sum of all digits in %d is %d",number,total);
     }
 
     /**
@@ -50,7 +59,11 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+        int minsOfYear = 60*24*365;
+        int years = mins / minsOfYear;
+        int days  = (mins % minsOfYear) / (60*24);
+
+        return String.format("%d minutes is approximately %d years and %d days",mins,years,days);
     }
 
     /**
@@ -63,8 +76,8 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-
-        return "";
+        double bmiVal = kgs/Math.pow(meters,2);
+        return String.format("Body Mass Index is %.3f", bmiVal);
     }
 
     /**
@@ -89,7 +102,14 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+        double totalSeconds = hours*3600 + minutes*60 + seconds;
+        double ms = meters/totalSeconds;
+        double kmh = ms*3.6;
+        kmh = Math.floor(kmh*10000)/10000;
+        double mh = kmh/1.609;
+        mh = Math.floor(mh*10000)/10000;
+
+        return String.format("Your speed in meters/second is %.4f\nYour speed in km/h is %.4f\nYour speed in miles/h is %.4f",ms,kmh,mh);
     }
 
     /**
@@ -105,7 +125,7 @@ public class Assignment1 {
      */
     public static String powers(int number) {
 
-        return "";
+        return String.format("Square: %d\nCube: %d\nFourth power: %d",(int)Math.pow(number,2), (int)Math.pow(number,3), (int)Math.pow(number,4));
     }
 
     /**
@@ -128,6 +148,23 @@ public class Assignment1 {
      */
     public static String arithmetic(int a, int b) {
 
-        return "";
+        int sum = a + b;
+        int diff = a - b;
+        int product = a*b;
+        float ave = (float)(a + b)/2;
+        int distance = Math.abs(a - b);
+        int max = a > b ? a : b;
+        int min = a < b ? a : b;
+
+        String result =
+                String.format("Sum of two integers: %d\n",             sum) +
+                String.format("Difference of two integers: %d\n",     diff) +
+                String.format("Product of two integers: %d\n",     product) +
+                String.format("Average of two integers: %.2f\n",       ave) +
+                String.format("Distance of two integers: %d\n",   distance) +
+                String.format("Max integer: %d\nMin integer: %d", max, min);
+
+
+        return result;
     }
 }
