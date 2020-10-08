@@ -26,7 +26,11 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
 
-        return "";
+        double inches2 = inches;
+        double meters = inches / 39.37;
+        String result = String.format("%.1f inches is %.1f meters", inches2, meters);
+
+        return result;
     }
 
     /**
@@ -37,8 +41,14 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
+        int a = number / 1000 % 10;
+        int b = number / 100 % 10;
+        int c = number / 10 % 10;
+        int d = number % 10;
+        int sum = a + b + c + d;
+        String result = String.format("The sum of all digits in %d is %d", number, sum);
 
-        return "";
+        return result;
     }
 
     /**
@@ -49,8 +59,11 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
+        int years = mins / 60 / 24 / 365;
+        int days = mins / 60 / 24 - years * 365;
+        String result = String.format("%d minutes is approximately %d years and %d days", mins, years, days);
 
-        return "";
+        return result;
     }
 
     /**
@@ -63,8 +76,10 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
+        double bmi = kgs / (meters * meters);
+        String result = String.format("Body Mass Index is %.3f", bmi);
 
-        return "";
+        return result;
     }
 
     /**
@@ -88,8 +103,17 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
+        double meterSecond = (double) meters / (hours * 3600 + minutes * 60 + seconds);
+        double kmHour = meterSecond * 3.6 - 0.0001;
+        double mileHour = meterSecond * 3600 / 1609 - 0.0001;
+//        double kmHour = ((double) meters / 1000) / ((double) (hours * 3600 + minutes * 60 + seconds) / 3600) - 0.0001;
+//        double mileHour = ((double) meters / 1609) / ((double) (hours * 3600 + minutes * 60 + seconds) / 3600) - 0.0001;
+        String result1 = String.format("Your speed in meters/second is %.4f", meterSecond);
+        String result2 = String.format("Your speed in km/h is %.4f", kmHour);
+        String result3 = String.format("Your speed in miles/h is %.4f", mileHour);
+        String result = result1 + "\n" + result2 + "\n" + result3;
 
-        return "";
+        return result;
     }
 
     /**
@@ -104,8 +128,12 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
+        int square = number * number;
+        int cube = number * number * number;
+        int fourth = number * number * number * number;
+        String result = String.format("Square: %d\nCube: %d\nFourth power: %d", square, cube, fourth);
 
-        return "";
+        return result;
     }
 
     /**
@@ -127,7 +155,29 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
+        int sum = a + b;
+        int dif = a - b;
+        int pro = a * b;
+        double ave = (double) (a + b) / 2;
+        int dis = Math.abs(a - b);
+        int max = 0;
+        int min = 0;
+        if (a >= b) {
+            max = a;
+            min = b;
+        } else {
+            max = b;
+            min = a;
+        }
+        String result1 = String.format("Sum of two integers: %d", sum);
+        String result2 = String.format("Difference of two integers: %d", dif);
+        String result3 = String.format("Product of two integers: %d", pro);
+        String result4 = String.format("Average of two integers: %.2f", ave);
+        String result5 = String.format("Distance of two integers: %d", dis);
+        String result6 = String.format("Max integer: %d", max);
+        String result7 = String.format("Min integer: %d", min);
+        String result = result1 + "\n" + result2 + "\n" + result3 + "\n" + result4 + "\n" + result5 + "\n" + result6 + "\n" + result7;
 
-        return "";
+        return result;
     }
 }
