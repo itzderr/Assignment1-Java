@@ -98,6 +98,8 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
+    int distance = meters;
+    int time= hours && minutes && seconds;
 
         return "";
     }
