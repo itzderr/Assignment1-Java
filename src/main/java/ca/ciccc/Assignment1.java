@@ -144,8 +144,13 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
+        int s = number * number;
+        int c = number * number * number;
+        int fp = number * number * number * number;
 
-        return "";
+
+
+        return String.format("Square: %d\nCube: %d\nFourth power: %d", s,c,fp);
     }
 
     /**
@@ -167,7 +172,19 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
+        int sum = a + b;
+        int dif = a - b;
+        int pro = a * b;
+        double ave = (double)(a + b)/2;
+        int dis = Math.abs(a - b);
+        int max = Math.max(a,b);
+        int min = Math.min(a,b);
 
-        return "";
+        return String.format("Sum of two integers: %d\n" +
+                "Difference of two integers: %d\n" +
+                "Product of two integers: %d\n" +
+                "Average of two integers: %.2f\n" +
+                "Distance of two integers: %d\n" +
+                "Max integer: %d\nMin integer: %d",sum,dif,pro,ave,dis,max,min);
     }
 }
