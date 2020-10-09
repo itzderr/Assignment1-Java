@@ -1,5 +1,7 @@
 package ca.ciccc;
 
+import java.util.Arrays;
+
 public class Assignment1 {
 
     /**
@@ -13,7 +15,6 @@ public class Assignment1 {
 
         double celsius = (degree - 32) * ((double) 5 / 9);
         String result = String.format("%.1f degree Fahrenheit is equal to %.1f in Celsius", degree, celsius);
-
         return result;
     }
 
@@ -26,7 +27,9 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
 
-        return "";
+        double meters = inches * 0.0254 ;
+
+        return String.format("%.1f inches is %.1f meters",(double)inches,meters);
     }
 
     /**
@@ -38,7 +41,28 @@ public class Assignment1 {
      */
     public static String addDigits(int number) {
 
-        return "";
+        int answer = number;
+        int sum = 0;
+        while (number != 0){
+
+            sum += number % 10;
+            number /= 10;
+        }
+
+
+
+
+
+
+//        int sum = 0;
+//        String num = Integer.toString(number);
+//        for(char c: num.toCharArray()){
+//            sum += Character.getNumericValue(c);
+//        }
+
+
+
+        return String.format("The sum of all digits in %d is %d",answer,sum);
     }
 
     /**
@@ -50,7 +74,17 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+        int minutes = mins;
+
+
+        int years = mins / 525600;
+
+        int days = (mins % 525600) / 1440;
+
+
+
+
+        return String.format("%d minutes is approximately %d years and %d days",minutes,years,days);
     }
 
     /**
@@ -63,8 +97,9 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
+        double answer = kgs / (meters * meters);
 
-        return "";
+        return String.format("Body Mass Index is %.3f",answer);
     }
 
     /**
@@ -88,8 +123,13 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
+        double timeSeconds = (hours*3600) + (minutes*60) + seconds;
+        double mps = meters / timeSeconds;
+        double kph = ( meters /1000 ) / ( timeSeconds/3600 );
+        double mph = kph / 1.609;
 
-        return "";
+        return String.format("Your speed in meters/second is %.4f\nYour speed in km/h is %.4f\nYour speed in miles/h is %.4f", mps,kph,mph);
+
     }
 
     /**
