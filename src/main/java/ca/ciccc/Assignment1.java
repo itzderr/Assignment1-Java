@@ -1,5 +1,8 @@
 package ca.ciccc;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Assignment1 {
 
     /**
@@ -26,7 +29,9 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
 
-        return "";
+        double meters = inches * 0.0254;
+
+        return String.format("%.1f inches is %.1f meters", (double)inches, meters);
     }
 
     /**
@@ -37,8 +42,11 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
-
-        return "";
+        int result = 0;
+        for (int i = number; i > 0; i /= 10) {
+            result += i % 10;
+        }
+        return String.format("The sum of all digits in %d is %d", number, result);
     }
 
     /**
@@ -49,8 +57,10 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
+        int years = mins / (60 * 24 * 365);
+        int days = (mins - ((60 * 24 * 365) * years)) / (60 * 24);
 
-        return "";
+        return String.format("%d minutes is approximately %d years and %d days", mins, years, days);
     }
 
     /**
@@ -64,7 +74,7 @@ public class Assignment1 {
      */
     public static String bmi(int kgs, double meters) {
 
-        return "";
+        return String.format("Body Mass Index is %.3f", kgs / (meters * meters));
     }
 
     /**
@@ -89,7 +99,20 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+        int secs = (hours * 3600) + (minutes * 60) + seconds;
+
+        double ms = (double)meters / (double)secs;
+        double kmh = (double)(meters * 3600) / (double)(secs * 1000);
+        double mih = kmh / 1.609f;
+
+        return String.format(
+                "Your speed in meters/second is %.4f\n"
+                        + "Your speed in km/h is %.4f\n"
+                        + "Your speed in miles/h is %.4f",
+                (new BigDecimal(ms)).setScale(4, RoundingMode.DOWN),
+                (new BigDecimal(kmh)).setScale(4, RoundingMode.DOWN),
+                (new BigDecimal(mih)).setScale(4, RoundingMode.DOWN)
+        );
     }
 
     /**
@@ -105,7 +128,14 @@ public class Assignment1 {
      */
     public static String powers(int number) {
 
-        return "";
+        return String.format(
+                "Square: %d\n"
+                        + "Cube: %d\n"
+                        + "Fourth power: %d",
+                number * number,
+                number * number * number,
+                number * number * number * number
+        );
     }
 
     /**
@@ -128,6 +158,21 @@ public class Assignment1 {
      */
     public static String arithmetic(int a, int b) {
 
-        return "";
+        return String.format(
+                "Sum of two integers: %d\n"
+                        + "Difference of two integers: %d\n"
+                        + "Product of two integers: %d\n"
+                        + "Average of two integers: %.2f\n"
+                        + "Distance of two integers: %d\n"
+                        + "Max integer: %d\n"
+                        + "Min integer: %d",
+                a + b,
+                a - b,
+                a * b,
+                (double)(a + b) / 2,
+                Math.abs(b - a),
+                Math.max(a, b),
+                Math.min(a, b)
+        );
     }
 }
