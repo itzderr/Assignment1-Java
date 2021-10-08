@@ -1,5 +1,8 @@
 package ca.ciccc;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Assignment1 {
 
     /**
@@ -26,7 +29,9 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
 
-        return "";
+        double meter = inches / 1000.0 * 25.4;
+
+        return (double) inches + " inches is " + meter + " meters";
     }
 
     /**
@@ -38,7 +43,19 @@ public class Assignment1 {
      */
     public static String addDigits(int number) {
 
-        return "";
+        int sum = 0;
+        int tempNumber = number;
+
+        if (number < 0 || number > 1000) {
+            throw new IllegalArgumentException("The number should be between 0 and 1000.");
+        }
+
+        while (tempNumber > 0) {
+            sum += tempNumber % 10;
+            tempNumber /= 10;
+        }
+
+        return "The sum of all digits in " + number + " is " + sum;
     }
 
     /**
@@ -50,7 +67,10 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+        int years = mins / (60 * 24 * 365);
+        int days = mins % (60 * 24 * 365) / (60 * 24);
+
+        return mins + " minutes is approximately " + years + " years and " + days + " days";
     }
 
     /**
@@ -64,7 +84,11 @@ public class Assignment1 {
      */
     public static String bmi(int kgs, double meters) {
 
-        return "";
+        double BMI = kgs / (meters * meters);
+
+        BigDecimal formattedBMI = new BigDecimal(BMI).setScale(3, RoundingMode.HALF_UP);
+
+        return "Body Mass Index is " + formattedBMI;
     }
 
     /**
@@ -89,7 +113,23 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+        int totalTimeInSecond = (hours * 3600) + (minutes * 60) + seconds;
+        double totalTimeInHour = (double) totalTimeInSecond / 3600;
+
+        double km = (double) meters / 1000;
+        double miles = (double) meters / 1609;
+
+        double metersPerSecond = (double) meters / totalTimeInSecond;
+        double kmPerHour = (double) km / totalTimeInHour;
+        double milesPerHour = miles / totalTimeInHour;
+
+        BigDecimal formattedMetersPerSecond = new BigDecimal(metersPerSecond).setScale(4, RoundingMode.FLOOR);
+        BigDecimal formattedKmPerHour = new BigDecimal(kmPerHour).setScale(4, RoundingMode.FLOOR);
+        BigDecimal formattedMilesPerHour = new BigDecimal(milesPerHour).setScale(4, RoundingMode.FLOOR);
+
+        return "Your speed in meters/second is " + formattedMetersPerSecond +
+                "\nYour speed in km/h is " + formattedKmPerHour +
+                "\nYour speed in miles/h is " + formattedMilesPerHour;
     }
 
     /**
@@ -105,7 +145,13 @@ public class Assignment1 {
      */
     public static String powers(int number) {
 
-        return "";
+        int square = (int) Math.pow(number, 2);
+        int cube = (int) Math.pow(number, 3);
+        int fourthPower = (int) Math.pow(number, 4);
+
+        return "Square: " + square +
+                "\nCube: " + cube +
+                "\nFourth power: " + fourthPower;
     }
 
     /**
@@ -128,6 +174,22 @@ public class Assignment1 {
      */
     public static String arithmetic(int a, int b) {
 
-        return "";
+        int sum = a + b;
+        int difference = a - b;
+        int product = a * b;
+        double avg = (double) sum / 2;
+        int distance = Math.abs(a - b);
+        int max = Math.max(a, b);
+        int min = Math.min(a, b);
+
+        BigDecimal formattedAvg = new BigDecimal(avg).setScale(2, RoundingMode.HALF_UP);
+
+        return "Sum of two integers: " + sum +
+                "\nDifference of two integers: " + difference +
+                "\nProduct of two integers: " + product +
+                "\nAverage of two integers: " + formattedAvg +
+                "\nDistance of two integers: " + distance +
+                "\nMax integer: " + max +
+                "\nMin integer: " + min;
     }
 }
