@@ -26,7 +26,12 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
 
-        return "";
+        inches = inches;
+        double float_inches = inches;
+        double meters = inches * 0.0254;
+        String result = String.format(float_inches + " inches is " + meters + " meters");
+
+        return result;  // return result
     }
 
     /**
@@ -38,7 +43,16 @@ public class Assignment1 {
      */
     public static String addDigits(int number) {
 
-        return "";
+        int sum = 0;
+
+        while(number > 0) {
+            sum += number % 10;
+            number /= 10;
+        }
+
+        String result = String.format("The sum of all digits in 565 is " + sum);
+        return result;
+
     }
 
     /**
@@ -50,7 +64,14 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+        int minutes = mins;
+
+        int years = minutes / (60 * 24 * 365);
+        int remainMinutes = minutes % (60 * 24 * 365);
+        int days = remainMinutes / (60 * 24);
+
+        String result = String.format(mins + " minutes is approximately " + years + " years and " + days + " days");
+        return result;
     }
 
     /**
@@ -64,7 +85,13 @@ public class Assignment1 {
      */
     public static String bmi(int kgs, double meters) {
 
-        return "";
+        double weight = kgs;
+        double height = meters;
+        double Body_Mass = weight / (height * height);
+        String BM_Triple = String.format("%.3f", Body_Mass);
+
+        String result = String.format("Body Mass Index is " + BM_Triple);
+        return result;
     }
 
     /**
@@ -89,7 +116,31 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+        double timeSeconds;
+        double mps, kph, mph;
+
+        double distance = meters;
+        double hr = hours;
+        double min = minutes;
+        double sec = seconds;
+
+        timeSeconds = (hr*3600) + (min*60) + sec;
+        mps = distance / timeSeconds;
+        kph = ( distance/1000.2f ) / ( timeSeconds/3600.0f );
+        mph = kph/1.609f;
+
+        String mps_4dec = String.format("%.4f", mps);
+        String kph_4dec = String.format("%.4f", kph);
+        String mph_4dec = String.format("%.4f", mph);
+
+        String result = String.format(
+            "Your speed in meters/second is " + mps_4dec + "\n" +
+            "Your speed in km/h is " + kph_4dec + "\n" +
+            "Your speed in miles/h is " + mph_4dec
+        );
+
+        return result;
+
     }
 
     /**
@@ -105,7 +156,23 @@ public class Assignment1 {
      */
     public static String powers(int number) {
 
-        return "";
+        double value = number;
+        double square = value * value;
+        double cube = value * value * value;
+        double fourth_p = value * value * value * value;
+
+        // remove decimals
+        String sq = String.format("%.0f", square);
+        String cu = String.format("%.0f", cube);
+        String fo = String.format("%.0f", fourth_p);
+
+        String result = String.format(
+            "Square: " + sq + "\n" +
+            "Cube: " + cu + "\n" +
+            "Fourth power: " + fo
+        );
+
+        return result;
     }
 
     /**
@@ -128,6 +195,31 @@ public class Assignment1 {
      */
     public static String arithmetic(int a, int b) {
 
-        return "";
+        int number_a = a;
+        int number_b = b;
+
+        int sum = number_a + number_b;
+        int difference = number_a - number_b;
+        int product = number_a * number_b;
+        double i = sum / 2;
+        double average = i;
+        String average_float = String.format("%.2f", average);
+        int distance = Math.abs(difference);
+        int max =  Math.max(number_a, number_b);
+        int min =  Math.min(number_a, number_b);
+
+
+
+        String result = String.format(
+            "Sum of two integers: " + sum + "\n" +
+            "Difference of two integers: " + difference + "\n" +
+            "Product of two integers: " + product + "\n" +
+            "Average of two integers: " + average_float + "\n" +
+            "Distance of two integers: " + distance + "\n" +
+            "Max integer: " + max + "\n" +
+            "Min integer: " + min
+        );
+
+        return result;
     }
 }
