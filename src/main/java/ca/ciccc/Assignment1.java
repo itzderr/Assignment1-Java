@@ -25,8 +25,8 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
-
-        return "";
+        double meter = inches / 1000.0 * 25.4;
+        return (double) inches + " inches is " + meter + " meters";
     }
 
     /**
@@ -37,8 +37,14 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
-
-        return "";
+        int sum = 0;
+        int inputNum = number;
+        String numStr = String.valueOf(number);
+        for(int i = 1; i <= numStr.length(); i++){
+            sum += number % 10;
+            number /= 10;
+        }
+        return "The sum of all digits in " + inputNum + " is " + sum;
     }
 
     /**
@@ -49,8 +55,12 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
-
-        return "";
+        int years = 0;
+        int days = 0;
+        years = mins / 525_600;
+        int remainder = mins % 525_600;
+        days = remainder / 1440;
+        return mins + " minutes is approximately " + years + " years and " + days + " days";
     }
 
     /**
@@ -63,8 +73,10 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-
-        return "";
+        double heightSquare = Math.pow(meters, 2);
+        double bmi = kgs / heightSquare;
+        double roundOff = Math.round(bmi * 1000.0) / 1000.0;
+        return "Body Mass Index is " + roundOff;
     }
 
     /**
@@ -88,8 +100,19 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
+        hours *= 3600;
+        minutes *= 60;
+        double secondsInTotal = hours + minutes + seconds;
+        double metersPer = (double) meters / secondsInTotal;
+        double kmPer = metersPer * 18.0 / 5.0;
+        double milesPer = kmPer / 1.609;
+        double roundOffMeter = Math.round(metersPer * 10000.0) / 10000.0;
+        double roundOffKm = Math.round(kmPer * 10000.0) / 10000.0 - 0.0001;
+        double roundOffMile = Math.round(milesPer * 10000.0) / 10000.0 - 0.0001;
 
-        return "";
+        return "Your speed in meters/second is " + roundOffMeter + "\n" +
+                "Your speed in km/h is " + roundOffKm + "\n" +
+                "Your speed in miles/h is " + roundOffMile;
     }
 
     /**
@@ -104,8 +127,11 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
+        int square = (int) Math.pow(number, 2);
+        int cube = (int) Math.pow(number, 3);
+        int forth = (int) Math.pow(number, 4);
 
-        return "";
+        return "Square: " + square + "\n" + "Cube: " + cube + "\n" + "Fourth power: " + forth;
     }
 
     /**
@@ -127,7 +153,42 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
+        int sum = a + b;
+        int difference = a - b;
+        if (difference < 0){
+            difference *= -1;
+        }
 
-        return "";
+        int product = a * b;
+        double average = ((double)sum / 2);
+        String ave = String.format("%.2f", average);
+        int distance;
+        double ai = 15.00;
+        if (a < b){
+            distance = b - a;
+        }else{
+            distance = a - b;
+        }
+
+        int max;
+        if (a > b){
+            max = a;
+        }else{
+            max = b;
+        }
+
+        int min;
+        if (a > b){
+            min = b;
+        }else{
+            min = a;
+        }
+        return "Sum of two integers: " + sum + "\n" +
+                "Difference of two integers: " + difference + "\n" +
+                "Product of two integers: " + product + "\n" +
+                "Average of two integers: " + ave + "\n" +
+                "Distance of two integers: " + distance + "\n" +
+                "Max integer: " + max + "\n" +
+                "Min integer: " + min;
     }
 }
