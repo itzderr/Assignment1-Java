@@ -1,5 +1,8 @@
 package ca.ciccc;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class Assignment1 {
 
     /**
@@ -25,8 +28,10 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
-
-        return "";
+        double db_inches = (double)inches;
+        double db_meters = 25.4*inches/1000;
+        String result = String.format("%.1f inches is %.1f meters", db_inches, db_meters);
+        return result;
     }
 
     /**
@@ -38,7 +43,16 @@ public class Assignment1 {
      */
     public static String addDigits(int number) {
 
-        return "";
+        int result_num = 0;
+        int cp_num = number;
+        while(0 < cp_num)
+        {
+            result_num += cp_num % 10;
+            cp_num /= 10;
+        }
+
+        String result = String.format("The sum of all digits in %d is %d", number, result_num);
+        return result;
     }
 
     /**
@@ -50,7 +64,12 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+        int days = mins / (60*24);
+        int years = days / 365;
+        days = days % 365;
+
+        String result = String.format("%d minutes is approximately %d years and %d days", mins, years, days);
+        return result;
     }
 
     /**
@@ -64,7 +83,7 @@ public class Assignment1 {
      */
     public static String bmi(int kgs, double meters) {
 
-        return "";
+        return String.format("Body Mass Index is %.3f", kgs / Math.pow(meters, 2.0));
     }
 
     /**
@@ -89,7 +108,22 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+        double total_seconds = (double)(hours*60*60+minutes*60+seconds);
+        double total_hours = total_seconds / (60*60);
+
+        double ret_ms = (double)meters / total_seconds;
+        double ret_kmh = (double)meters*0.001 / total_hours;
+        double ret_mlh = (double)meters / 1609 / total_hours;
+
+        DecimalFormat df = new DecimalFormat("0.0000");
+        df.setRoundingMode(RoundingMode.FLOOR);
+
+        return String.format("Your speed in meters/second is %s\n" +
+                "Your speed in km/h is %s\n" +
+                "Your speed in miles/h is %s",
+                df.format(ret_ms),
+                df.format(ret_kmh),
+                df.format(ret_mlh));
     }
 
     /**
@@ -105,7 +139,12 @@ public class Assignment1 {
      */
     public static String powers(int number) {
 
-        return "";
+        return String.format("Square: %d\n" +
+                "Cube: %d\n" +
+                "Fourth power: %d",
+                (int)Math.pow((double)number, 2.0),
+                (int)Math.pow((double)number, 3.0),
+                (int)Math.pow((double)number, 4.0));
     }
 
     /**
@@ -127,7 +166,21 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
+        String ret = String.format("Sum of two integers: %d\n" +
+                        "Difference of two integers: %d\n" +
+                        "Product of two integers: %d\n" +
+                        "Average of two integers: %.2f\n" +
+                        "Distance of two integers: %d\n" +
+                        "Max integer: %d\n" +
+                        "Min integer: %d",
+                        a+b,
+                        a-b,
+                        a*b,
+                        (double)(a+b)/2,
+                        Math.abs(a-b),
+                        Math.max(a,b),
+                        Math.min(a,b));
 
-        return "";
+        return ret;
     }
 }
