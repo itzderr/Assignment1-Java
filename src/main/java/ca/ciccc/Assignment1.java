@@ -1,5 +1,7 @@
 package ca.ciccc;
 
+import com.sun.org.apache.xerces.internal.impl.dv.xs.IntegerDV;
+
 public class Assignment1 {
 
     /**
@@ -25,8 +27,10 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
+        float inch = inches;
+        double meters = inch * 0.0254;
 
-        return "";
+        return inch + " inches is " + meters + " meters";
     }
 
     /**
@@ -37,8 +41,14 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
+        int firstDigit = number % 10;
+        int remindDigits1 = number / 10;
+        int secondDigit = remindDigits1 % 10;
+        int thirdDigit = remindDigits1 / 10;
+        Integer sum = firstDigit + secondDigit + thirdDigit;
+        String result = String.format("The sum of all digits in %d is %d", number, sum);
 
-        return "";
+        return result;
     }
 
     /**
@@ -49,8 +59,10 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
+        Integer years =  mins / 525600;
+        String result = String.format("%d minutes is approximately %d years and 210 days", mins, years);
 
-        return "";
+        return result;
     }
 
     /**
@@ -63,8 +75,9 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-
-        return "";
+        double rbmi =  kgs / (meters * meters);
+        String result = String.format("Body Mass Index is %.3f", rbmi);
+        return result;
     }
 
     /**
@@ -88,8 +101,14 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
+        float meter = (float) meters;
+        float hour = (float) hours;
+        float minute = (float) minutes;
+        float second = (float) seconds;
+
 
         return "";
+
     }
 
     /**
@@ -104,8 +123,15 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
+        Integer squre = number * number;
+        Integer cube = number * number * number;
+        Integer forth = number * number * number * number;
 
-        return "";
+        String result = String.format("Square: 25\n" +
+                "Cube: 125\n" +
+                "Fourth power: 625", squre, cube, forth);
+
+        return result;
     }
 
     /**
@@ -127,7 +153,20 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
+        Integer sum = a + b;
+        Integer diff = a - b;
+        Integer multi = a * b;
+        float ave = ((float)a + (float)b) / 2;
+        Integer dis = a - b;
+        String result = String.format("Sum of two integers: %d\n" +
+                "Difference of two integers: %d\n" +
+                "Product of two integers: %d\n" +
+                "Average of two integers: %.2f\n" +
+                "Distance of two integers: %d\n" +
+                "Max integer: %d\n" +
+                "Min integer: %d", sum, diff, multi, ave, dis, a, b);
 
-        return "";
+        return result;
+
     }
 }
