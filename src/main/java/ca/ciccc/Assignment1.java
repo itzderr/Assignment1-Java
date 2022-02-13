@@ -1,5 +1,9 @@
 package ca.ciccc;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.Map;
+
 public class Assignment1 {
 
     /**
@@ -9,11 +13,11 @@ public class Assignment1 {
      * @param degree
      * @return "212.0 degree Fahrenheit is equal to 100.0 in Celsius"
      */
-    public static String fahrenheitToCelsius(double degree) {
+    public static String fahrenheitToCelsius(int degree) {
 
         double celsius = (degree - 32) * ((double) 5 / 9);
-        String result = String.format("%.1f degree Fahrenheit is equal to %.1f in Celsius", degree, celsius);
-
+        String result = String.format("%.1f degree Fahrenheit is equal to %.1f in Celsius", (float) degree, celsius);
+        // I had to add (float) to degree that the your code run OK, even i switched my mac to Canada settings, still ran with error.
         return result;
     }
 
@@ -26,7 +30,11 @@ public class Assignment1 {
      */
     public static String inchesToMeters(int inches) {
 
-        return "";
+        double inches2 = (double) inches;
+        double meters = inches * 0.0254;
+        String result = String.format("%.1f inches is %.1f meters",inches2, meters);
+
+        return result;
     }
 
     /**
@@ -38,7 +46,16 @@ public class Assignment1 {
      */
     public static String addDigits(int number) {
 
-        return "";
+        int sum = 0;
+        int _number = number;
+        while (number != 0)
+        {
+            sum = sum + number % 10;
+            number = number / 10;
+        }
+        String result = String.format("The sum of all digits in %d is %d", _number, sum);
+
+        return result;
     }
 
     /**
@@ -50,7 +67,11 @@ public class Assignment1 {
      */
     public static String minsToYearsDays(int mins) {
 
-        return "";
+        int year = mins / 525600;
+        int day = (mins % 525600) / 1440;
+        String result = String.format("%d minutes is approximately %d years and %d days", mins, year, day);
+
+        return result;
     }
 
     /**
@@ -64,7 +85,10 @@ public class Assignment1 {
      */
     public static String bmi(int kgs, double meters) {
 
-        return "";
+        float BMI = (float)kgs / (float)( meters * meters );
+        String result = String.format("Body Mass Index is %.3f",BMI);
+
+        return result;
     }
 
     /**
@@ -89,7 +113,15 @@ public class Assignment1 {
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
-        return "";
+        int time = (hours * 3600) + (minutes * 60) + seconds;
+        float mPerHour = (float) meters / (float) time;
+        float kmPerHour = (float) (meters * 3600) / (float) (time * 1000);
+        float milPerHour = (float)( meters * 3600 ) / (float)( time * 1000 * 1.609);
+        DecimalFormat df = new DecimalFormat("#.####");
+        df.setRoundingMode(RoundingMode.FLOOR);
+        String result = String.format("Your speed in meters/second is %s\nYour speed in km/h is %s\nYour speed in miles/h is %s",df.format(mPerHour), df.format(kmPerHour), df.format(milPerHour));
+
+        return result;
     }
 
     /**
@@ -105,7 +137,12 @@ public class Assignment1 {
      */
     public static String powers(int number) {
 
-        return "";
+        int square = number * number;
+        int cube = square * number;
+        int fourth = cube * number;
+        String result = String.format("Square: %d\nCube: %d\nFourth power: %d",square, cube, fourth);
+
+        return result;
     }
 
     /**
@@ -128,6 +165,20 @@ public class Assignment1 {
      */
     public static String arithmetic(int a, int b) {
 
-        return "";
+        int sum = a + b;
+        int diff = a - b;
+        int pro = a * b;
+        double avg = ((a + b) / 2);
+        int dis = Math.abs(a - b);
+        int max = Math.max(a, b);
+        int min = Math.min(a, b);
+        String result = String.format("Sum of two integers: %d\n" +
+                "Difference of two integers: %d\n" +
+                "Product of two integers: %d\n" +
+                "Average of two integers: %.2f\n" +
+                "Distance of two integers: %d\n" +
+                "Max integer: %d\nMin integer: %d", sum, diff, pro, avg, dis, max, min);
+
+        return result;
     }
 }
