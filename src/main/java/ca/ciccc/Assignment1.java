@@ -1,5 +1,7 @@
 package ca.ciccc;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.IllegalFormatPrecisionException;
 
 public class Assignment1 {
@@ -110,6 +112,7 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
+
         // km/hour
         // converting meters to km:
         double toKm = (meters / 1000.0);
@@ -132,11 +135,18 @@ public class Assignment1 {
         double minutesToSeconds = minutes * 60;
         double hoursToSeconds = hours * 60 * 60;
         double totalSeconds = seconds + minutesToSeconds + hoursToSeconds;
+
         // getting the final result for meters/second:
         double metersSecond = meters / totalSeconds;
+        DecimalFormat df = new DecimalFormat("#.####");
+
+        df.setRoundingMode(RoundingMode.FLOOR);
+        String meterPerSecond = df.format(metersSecond);
+        String kmPerHour = df.format(kmHours);
+        String milesPerHour = df.format(milesHours);
 
 
-        String result = String.format("Your speed in meters/second is %.4f\nYour speed in km/h is %.4f\nYour speed in miles/h is %.4f",metersSecond, kmHours, milesHours);
+        String result = String.format("Your speed in meters/second is %s\nYour speed in km/h is %s\nYour speed in miles/h is %s",meterPerSecond, kmPerHour, milesPerHour);
 
         return result;
 
