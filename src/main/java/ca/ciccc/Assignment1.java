@@ -25,8 +25,15 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
+        // Calculate the meters
+        double calculation = (inches * 25.4);
+        // create the string for the return
+        String result = String.format("%.1f inches is %.1f meters", inches, calculation);
 
-        return "";
+
+
+        return result;
+
     }
 
     /**
@@ -37,8 +44,17 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
+        class alex{
+            static int sum(int n) {
+                int sum = 0;
+                while (n != 0){
+                    sum = sum + n % 10;
+                }
+            }
 
-        return "";
+        }
+
+        return sum;
     }
 
     /**
@@ -49,8 +65,13 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
+        // 525600 are all the minutes in 1 year (60 times 24 times 365)
+        float years = (mins / 525600);
+        float days = years % (mins / 525600);
+        String result = String.format("%f minutes in approximately %f and %f days", mins, years, days);
 
-        return "";
+
+        return result;
     }
 
     /**
@@ -63,8 +84,10 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
+        double bmi = (kgs) / (meters * meters);
+        String result = String.format("Body Mass Index is %.2f", bmi);
 
-        return "";
+        return result;
     }
 
     /**
@@ -88,8 +111,22 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
+        // convert minutes & seconds to hours
+        double minh = (minutes / 60);
+        double sech = ((seconds / 60) / 60);
+        // Sum the 3 time entries
+        double sumstime = (hours += minh += sech);
+        // calculate the 3 speed labels
+        double speed1 = (meters / sumstime);
+        // formula according to mathworksheets4kids.com
+        double speed2 = ((speed1 * 18) / 5);
+        // formula according to sciencing.com
+        double speed3 = (speed1 * 2.2369);
+        // print the speed labels
+        String result = String.format("Your speed is meters/second is %.4f\n" +
+                "Your speed in km/h is %.4f\nYour speed in miles/h is %.4f", speed1, speed2, speed3);
 
-        return "";
+        return result;
     }
 
     /**
@@ -104,8 +141,12 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
+            int square = (number * number);
+            int cube = (number * number * number);
+            int fourth = (number * number * number * number);
+            String result = String.format("Square %d\nCube %d\nFourth %d", square, cube, fourth);
 
-        return "";
+        return result;
     }
 
     /**
@@ -127,7 +168,36 @@ public class Assignment1 {
      *          Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
+            int absolute = 0;
+            int max = 0;
+            int min = 0;
+            // calculate the values
+            int sum = (a += b);
+            int difference = (a -= b);
+            int product = (a * b);
+            float average = ((a += b) / 2);
+            if (difference > 0) {
+                int absolute = difference;
+            }
+            else {
+                int absolute = (difference * -1);
+            }
+            if (a > b){
+                int max = a;
+                int min = b;
+            }
+            else{
+                int max = b;
+                int min = a;
+            }
+            String result = String.format("Sum of two integers: %d\n" +
+                    "Difference of two integers: %d\n" +
+                    "Product of two integers: %d\n" +
+                    "Average of two integers: %d\n" +
+                    "Distance of two integers: %d\n" +
+                    "Max integer: %d\nMin integer: %d",
+                    sum, difference, product, average, absolute, max, min);
 
-        return "";
+        return result;
     }
 }
