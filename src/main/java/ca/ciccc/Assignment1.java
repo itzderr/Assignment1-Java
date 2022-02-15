@@ -1,5 +1,7 @@
 package ca.ciccc;
 
+import com.sun.xml.internal.txw2.output.DumbEscapeHandler;
+
 public class Assignment1 {
 
     /**
@@ -25,8 +27,13 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
-
-        return "";
+        double inches1 = 0.0, meters = 0.0;
+        inches1 = inches;
+        meters = inches1 * 0.0254;
+        String inchesStr = String.format("%.1f", inches1);
+        String metersStr = String.format("%.1f", meters);
+        String result = inchesStr + "inches is: " + metersStr + " meters";
+        return result;
     }
 
     /**
@@ -37,8 +44,15 @@ public class Assignment1 {
      * @return "The sum of all digits in 565 is 16"
      */
     public static String addDigits(int number) {
-
-        return "";
+        int sum = 0, digit = 0;
+        String numberStr = String.valueOf(number);
+        while (number >= 0) {
+            digit = number % 10;
+            sum = sum + digit;
+            number = (number / 10);
+        }
+        String result = "The sum of all digits in: " + numberStr + " is: " + sum;
+        return result;
     }
 
     /**
@@ -49,8 +63,15 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
-
-        return "";
+        //1 day = 1440 mins
+        int years = 0, days = 0;
+        days = mins / 1440;
+        while (days >= 365) {
+            days = days - 365;
+            years = years + 1;
+        }
+        String result = mins + " minutes is approximately 6 years and " + days + " days";
+        return result;
     }
 
     /**
@@ -63,8 +84,11 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-
-        return "";
+        double bodyMi = 0.0;
+        bodyMi = (kgs / (meters * meters));
+        String bodyMiStr = String.format("%.1f", bodyMi);
+        String result = "Body Mass Index is: " + bodyMiStr + "kgs";
+        return result;
     }
 
     /**
@@ -82,10 +106,9 @@ public class Assignment1 {
      * @param hours
      * @param minutes
      * @param seconds
-     * @return
-     *      "Your speed in meters/second is 0.1169
-     *       Your speed in km/h is 0.4208
-     *       Your speed in miles/h is 0.2615"
+     * @return "Your speed in meters/second is 0.1169
+     * Your speed in km/h is 0.4208
+     * Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
 
@@ -100,12 +123,18 @@ public class Assignment1 {
      *
      * @param number
      * @return "Square: 25
-     *          Cube: 125
-     *          Fourth power: 625"
+     * Cube: 125
+     * Fourth power: 625"
      */
     public static String powers(int number) {
-
-        return "";
+        int square = 0, cube = 0, fourthPower;
+        square = (number * number);
+        cube = (number * number * number);
+        fourthPower = (number * number * number * number);
+        String result = "Square: " + square +
+                "\n" + "Cube: " + cube +
+                "\n" + "Fourth power: " + fourthPower;
+        return result;
     }
 
     /**
@@ -119,15 +148,30 @@ public class Assignment1 {
      * @param a
      * @param b
      * @return "Sum of two integers: 30
-     *          Difference of two integers: 20
-     *          Product of two integers: 125
-     *          Average of two integers: 15.00
-     *          Distance of two integers: 20
-     *          Max integer: 25
-     *          Min integer: 5"
+     * Difference of two integers: 20
+     * Product of two integers: 125
+     * Average of two integers: 15.00
+     * Distance of two integers: 20
+     * Max integer: 25
+     * Min integer: 5"
      */
     public static String arithmetic(int a, int b) {
-
-        return "";
+        int sum = 0, diff = 0, product = 0, dist = 0, maxInteger = 0, minInteger = 0;
+        double average = 0.0;
+        sum = a + b;
+        diff = a - b;
+        product = a * b;
+        average = ((a + b) / 2);
+        dist = Math.max(a, b) - Math.min(a, b);
+        maxInteger = Math.max(a, b);
+        minInteger = Math.min(a, b);
+        String result = "Sum of two integers: " + sum +
+                "\n" + "Difference of two integers: " + diff +
+                "\n" + "Product of two integers: " + product +
+                "\n" + "Average of two integers: " + average +
+                "\n" + "Distance of two integers: " + dist +
+                "\n" + "Max integer: " + maxInteger +
+                "\n" + "Min integer: " + minInteger;
+        return result;
     }
 }
