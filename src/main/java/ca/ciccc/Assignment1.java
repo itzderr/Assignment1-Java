@@ -25,9 +25,10 @@ public class Assignment1 {
      * @return "1000.0 inches is 25.4 meters"
      */
     public static String inchesToMeters(int inches) {
+        double dinches = inches;
         double meter;
         meter = 0.0254 * inches;
-        String result = String.format("1000.0 inches is 25.4 meters", inches, meter);
+        String result = String.format(dinches + " inches is " + meter + " meters");
 
         return result;
     }
@@ -58,10 +59,11 @@ public class Assignment1 {
      * @return "3456789 minutes is approximately 6 years and 210 days"
      */
     public static String minsToYearsDays(int mins) {
-       int years = (mins / 525600);
-       int days  = (years / 1440);
 
-       String result = String.format("3456789 minutes is approximately 6 years and 210 days",years,days);
+       int years = (mins / (60 * 24 * 365));
+       int days  = mins / (60 * 24) - (years * 365) ;
+
+       String result = String.format("3456789 minutes is approximately " + years + " years and " + days + " days");
 
         return result;
     }
@@ -76,8 +78,9 @@ public class Assignment1 {
      * @return "Body Mass Index is 22.857"
      */
     public static String bmi(int kgs, double meters) {
-        double bmi = (meters * meters / kgs);
-        String result = String.format("Body Mass Index is 22.857",bmi);
+        double bmi = (kgs / (meters * meters));
+        double dbmi = (Math.floor(bmi * 1000.0)/1000.0);
+        String result = String.format("Body Mass Index is " + dbmi);
 
         return result;
     }
@@ -103,10 +106,15 @@ public class Assignment1 {
      *       Your speed in miles/h is 0.2615"
      */
     public static String speed(int meters, int hours, int minutes, int seconds) {
-        int meters_per_second = meters / minutes;
-        int kirometers_per_hour = meters / hours;
-        int miles_per_hour = meters / 1609 / hours;
-        String result = String.format("Your speed in meters/second is 0.1169\nYour speed in km/h is 0.4208\nYour speed in miles/h is 0.2615",meters_per_second,kirometers_per_hour,miles_per_hour);
+        double totalSec = (hours * 3600) + (minutes * 60) + seconds;
+        double kPh = meters / (totalSec/3.6);
+        double mPs = meters / totalSec;
+        double mPh = kPh / 1.609;
+        double dkPh = (Math.floor(kPh * 10000.0)/10000.0);
+        double dmPs = (Math.floor(mPs * 10000.0)/10000.0);
+        double dmPh = (Math.floor(mPh * 10000.0)/10000.0);
+
+        String result = (String.format("Your speed in meters/second is " + dmPs +"\n" + "Your speed in km/h is " + dkPh + "\n" + "Your speed in miles/h is " + dmPh));
 
 
         return result;
@@ -124,10 +132,10 @@ public class Assignment1 {
      *          Fourth power: 625"
      */
     public static String powers(int number) {
-        double square = Math.pow(number,2);
-        double cube = Math.pow(number,3);
-        double fourth_power = Math.pow(number,4);
-        String result = String.format("Square: 25\nCube: 125\nFourth power: 625",square,cube,fourth_power);
+        int square = number * number ;
+        int cube = number * number * number;
+        int fourth_power = number * number * number * number;
+        String result = String.format("Square: " +square+ "\n" + "Cube: " + cube +"\n" +"Fourth power: " +fourth_power);
 
         return result;
     }
@@ -156,16 +164,17 @@ public class Assignment1 {
         int difference = a - b;
         int product = a * b;
         double average = (a + b) / 2;
+
         int distance = Math.abs(a - b);
         int max = Math.max(a,b);
         int min = Math.min(a,b);
-        String result = String.format("Sum of two integers: "+ sum + "\n" +
+        String result = (String.format("Sum of two integers: "+ sum + "\n" +
                         "Difference of two integers: "+ difference + "\n" +
                         "Product of two integers: "+ product + "\n" +
                         "Average of two integers: " + average + 0 + "\n" +          // "%.f2", value
                         "Distance of two integers: "+ distance + "\n" +
                         "Max integer: " +max+ "\n" +
-                        "Min integer: " + min);
+                        "Min integer: " + min));
 
         return result;
     }
